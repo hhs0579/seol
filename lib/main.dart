@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seol/model/logincheckmodel.dart';
 import 'package:seol/tutorial/1.dart';
 import 'package:provider/provider.dart';
+import 'package:seol/widget/userProvider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AgreementModel())
+        ChangeNotifierProvider(create: (context) => AgreementModel()),
+        ChangeNotifierProvider(
+          create: (context) => UserProvider(),
+        )
       ],
       child: MaterialApp(
           title: 'Flutter Demo',
