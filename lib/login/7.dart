@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seol/utils/color.dart';
 
 import '../widget/userProvider.dart';
-import '7.dart';
+import '8.dart';
 
-class login6 extends StatefulWidget {
-  const login6({super.key});
+class login7 extends StatefulWidget {
+  const login7({super.key});
 
   @override
-  State<login6> createState() => _login6State();
+  State<login7> createState() => _login7State();
 }
 
-class _login6State extends State<login6> {
+class _login7State extends State<login7> {
+  @override
   List<int> selectedPhotos = [];
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,12 @@ class _login6State extends State<login6> {
     double width = MediaQuery.of(context).size.width;
     // 이미지 데이터 (임시 데이터로 대체)
     List<String> photoPaths = [
-      'assets/images/ms1.png',
-      'assets/images/ms2.png',
-      'assets/images/ms3.png',
-      'assets/images/ms4.png',
-      'assets/images/ms5.png',
-      'assets/images/ms6.png',
+      'assets/images/cs1.png',
+      'assets/images/cs2.png',
+      'assets/images/cs3.png',
+      'assets/images/cs4.png',
+      'assets/images/cs5.png',
+      'assets/images/cs6.png',
       // ... 여기에 나머지 이미지 경로를 추가 ...
     ];
 
@@ -55,15 +57,15 @@ class _login6State extends State<login6> {
                             fontSize: 26),
                       ),
                       Row(
-                        children: const [
+                        children: [
                           Text(
-                            '요즘 주로 입는 스타일',
+                            '도전해보고 싶은 새로운 스타일',
                             style: TextStyle(
-                                color: Colors.blue,
+                                color: ColorList.brown,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 26),
+                                fontSize: 24),
                           ),
-                          Text(
+                          const Text(
                             '은?',
                             style: TextStyle(
                                 color: Colors.black,
@@ -76,19 +78,19 @@ class _login6State extends State<login6> {
                         height: 20,
                       ),
                       Row(
-                        children: const [
-                          Text('가장 유사한 것을 '),
+                        children: [
+                          const Text('관심있는 것을 '),
                           Text(
                             '3개 이상 ',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: ColorList.brown),
                           ),
-                          Text('골라주세요!')
+                          const Text('골라주세요!')
                         ],
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Image.asset('assets/images/6.png')
+                      Image.asset('assets/images/7.png')
                     ],
                   ),
                 ),
@@ -122,8 +124,9 @@ class _login6State extends State<login6> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color:
-                                  isSelected ? Colors.blue : Colors.transparent,
+                              color: isSelected
+                                  ? ColorList.brown
+                                  : Colors.transparent,
                               width: isSelected ? 3 : 0,
                             ),
                           ),
@@ -146,18 +149,19 @@ class _login6State extends State<login6> {
                 child: ElevatedButton(
                   onPressed: isButtonEnabled
                       ? () {
+                          // TODO: 선택 완료 로직 처리
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const login7(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                                  const login8(), // 여기에 새로운 페이지 위젯을 넣으세요.
                             ),
                           );
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isButtonEnabled
-                        ? Colors.blue
+                        ? ColorList.brown
                         : Colors.grey, // 버튼 활성화/비활성화 색상
                   ),
                   child: const Text(

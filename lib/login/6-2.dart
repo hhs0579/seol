@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../widget/userProvider.dart';
-import '7.dart';
+import '7-2.dart';
 
-class login6 extends StatefulWidget {
-  const login6({super.key});
+class login6_2 extends StatefulWidget {
+  const login6_2({super.key});
 
   @override
-  State<login6> createState() => _login6State();
+  State<login6_2> createState() => _login6_2State();
 }
 
-class _login6State extends State<login6> {
+class _login6_2State extends State<login6_2> {
   List<int> selectedPhotos = [];
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,12 @@ class _login6State extends State<login6> {
     double width = MediaQuery.of(context).size.width;
     // 이미지 데이터 (임시 데이터로 대체)
     List<String> photoPaths = [
-      'assets/images/ms1.png',
-      'assets/images/ms2.png',
-      'assets/images/ms3.png',
-      'assets/images/ms4.png',
-      'assets/images/ms5.png',
-      'assets/images/ms6.png',
+      'assets/images/ms1-2.png',
+      'assets/images/ms2-2.png',
+      'assets/images/ms3-2.png',
+      'assets/images/ms4-2.png',
+      'assets/images/ms5-2.png',
+      'assets/images/ms6-2.png',
       // ... 여기에 나머지 이미지 경로를 추가 ...
     ];
 
@@ -146,11 +146,12 @@ class _login6State extends State<login6> {
                 child: ElevatedButton(
                   onPressed: isButtonEnabled
                       ? () {
+                          // TODO: 선택 완료 로직 처리
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const login7(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                                  const login7_2(), // 여기에 새로운 페이지 위젯을 넣으세요.
                             ),
                           );
                         }

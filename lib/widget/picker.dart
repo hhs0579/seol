@@ -296,31 +296,115 @@ void showFootSizePicker(BuildContext context, UserProvider userProvider) {
                   children: const <Widget>[
                     Center(
                         child: Text(
-                      'S',
+                      '220',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     )),
                     Center(
                         child: Text(
-                      'M',
+                      '225',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     )),
                     Center(
                         child: Text(
-                      'L',
+                      '230',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     )),
                     Center(
                         child: Text(
-                      'XL',
+                      '235',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     )),
                     Center(
                         child: Text(
-                      'XXL',
+                      '240',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '245',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '250',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '255',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '260',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '265',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '270',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '275',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '280',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '285',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '290',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '295',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '300',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '305',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    )),
+                    Center(
+                        child: Text(
+                      '310',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     )),

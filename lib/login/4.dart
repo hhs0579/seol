@@ -31,7 +31,6 @@ class login4 extends StatelessWidget {
         height: height,
         child: Consumer<UserProvider>(
           builder: (context, model, _) => Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: const EdgeInsets.all(40.0),
@@ -204,6 +203,7 @@ class login4 extends StatelessWidget {
                   ],
                 ),
               ),
+              const Spacer(),
               (model.isFemale || model.isMale)
                   ? InkWell(
                       onTap: () {
