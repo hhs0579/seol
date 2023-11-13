@@ -8,4 +8,5 @@ class ColorList {
   static Color white = const Color(0xfff7f8f8);
   static Color brown = const Color(0xff854F36);
   static Color lightbrown = const Color(0xffeeebe3);
+  static Color black = const Color(0xff363636);
 }

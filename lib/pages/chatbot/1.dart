@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seol/pages/chatbot/2.dart';
 import 'package:seol/utils/color.dart';
 
 import '../../widget/userProvider.dart';
@@ -23,6 +24,8 @@ class _chatbot1State extends State<chatbot1> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         color: ColorList.blue,
@@ -89,12 +92,19 @@ class _chatbot1State extends State<chatbot1> {
                 ),
               ),
               // 상단 버튼들
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildTopButton("보유 옷 치수", 0),
-                  _buildTopButton("TPO 치수", 1),
-                ],
+              Container(
+                width: width * 0.5,
+                height: 55,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildTopButton("보유 옷 기반", 0),
+                    _buildTopButton("TPO 기반", 1),
+                  ],
+                ),
               ),
               Expanded(
                 // PageView for swiping pages
@@ -106,8 +116,31 @@ class _chatbot1State extends State<chatbot1> {
                     });
                   },
                   children: [
-                    Container(),
-                    Container(),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const chatbot2(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                          ),
+                        );
+                      },
+                      splashColor: Colors.transparent, // 물결 효과를 투명하게
+                      highlightColor: Colors.transparent,
+                      child: Container(
+                        child: Image.asset(
+                          'assets/images/16.png',
+                          scale: 2,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: Image.asset(
+                        'assets/images/17.png',
+                        scale: 2,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -119,26 +152,43 @@ class _chatbot1State extends State<chatbot1> {
   }
 
   Widget _buildTopButton(String text, int page) {
-    return ElevatedButton(
-      onPressed: () {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return InkWell(
+      splashColor: Colors.transparent, // 물결 효과를 투명하게
+      highlightColor: Colors.transparent,
+      onTap: () {
         _pageController.animateToPage(
           page,
           duration: const Duration(milliseconds: 500),
           curve: Curves.ease,
         );
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: _currentPage == page ? Colors.blue : Colors.grey,
+      child: Container(
+        alignment: Alignment.center,
+        width: width * 0.25,
+        height: 55,
+        decoration: BoxDecoration(
+            color:
+                _currentPage == page ? const Color(0xff363636) : Colors.white,
+            borderRadius: BorderRadius.circular(30)),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: _currentPage == page ? Colors.white : Colors.grey,
+          ),
+        ),
       ),
-      child: Text(text),
     );
   }
 
   Widget _buildPageContent(String text, Color color) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-      color: Colors.white,
-      
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.white,
       ),
     );
   }
