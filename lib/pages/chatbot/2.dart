@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../utils/color.dart';
+import '../../widget/bottompicker.dart';
 
 class chatbot2 extends StatefulWidget {
-  const chatbot2({super.key});
+
+  const chatbot2({super.key, });
 
   @override
   State<chatbot2> createState() => _chatbot2State();
@@ -23,9 +25,13 @@ class _chatbot2State extends State<chatbot2> {
   bool a = false;
   bool b = false;
   bool c = false;
+  final PageController controller = PageController();
   @override
   void initState() {
     super.initState();
+    controller.addListener(() {
+      setState(() {}); // 페이지 변경 시 UI 업데이트
+    });
     c = false;
     timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       if (imageIndex < imagePaths.length) {
@@ -173,6 +179,7 @@ class _chatbot2State extends State<chatbot2> {
                               updateCState(true);
                             }
                             Navigator.pop(context);
+                            showPickerModal(context);
                           },
                           splashColor: Colors.transparent, // 물결 효과를 투명하게
                           highlightColor: Colors.transparent,
@@ -202,7 +209,7 @@ class _chatbot2State extends State<chatbot2> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
-                        )
+                        ),
                 ],
               ));
         });
@@ -213,7 +220,8 @@ class _chatbot2State extends State<chatbot2> {
   @override
   void dispose() {
     timer?.cancel();
-
+    controller.removeListener(() {});
+    controller.dispose();
     super.dispose();
   }
 
@@ -291,7 +299,8 @@ class _chatbot2State extends State<chatbot2> {
                         scale: 2.5,
                       ),
                     )
-                  : Container()
+                  : Container(),
+
             ],
           ),
         ),
