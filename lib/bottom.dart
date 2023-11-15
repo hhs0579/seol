@@ -6,15 +6,27 @@ import 'package:seol/pages/home/1.dart';
 import 'package:seol/pages/office/1.dart';
 import 'package:seol/pages/search/1.dart';
 import 'package:seol/utils/color.dart';
+import 'package:seol/widget/%08bottomsheet.dart';
 
 class Bottom extends StatefulWidget {
-  const Bottom({super.key});
+  final bool showBottomSheet;
+  const Bottom({super.key, required this.showBottomSheet});
 
   @override
   State<Bottom> createState() => _BottomState();
 }
 
 class _BottomState extends State<Bottom> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.showBottomSheet) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showBottomSheets(context);
+      });
+    }
+  }
+
   int _selectedIndex = 0;
   // 현재 선택된 항목의 인덱스를 표시
   final List<Widget> _pages = [

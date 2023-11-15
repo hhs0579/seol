@@ -14,7 +14,9 @@ class login9 extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const Bottom(), // 여기에 새로운 페이지 위젯을 넣으세요.
+            builder: (context) => const Bottom(
+              showBottomSheet: false,
+            ), // 여기에 새로운 페이지 위젯을 넣으세요.
           ),
         );
       },

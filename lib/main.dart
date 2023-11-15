@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:seol/bottom.dart';
 import 'package:seol/model/logincheckmodel.dart';
-import 'package:seol/pages/chatbot/2.dart';
 import 'package:provider/provider.dart';
 import 'package:seol/widget/userProvider.dart';
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Pretendard',
             primarySwatch: Colors.blue,
           ),
-          home: const chatbot2()),
+          home: const Bottom(showBottomSheet: false)),
     );
   }
 }

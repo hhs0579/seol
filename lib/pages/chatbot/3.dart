@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../widget/dialog.dart';
+
 class chatbot3 extends StatefulWidget {
   const chatbot3({super.key});
 
@@ -78,18 +80,24 @@ class _chatbot3State extends State<chatbot3> {
                 alignment: Alignment.centerLeft,
                 child: Image.asset(
                   'assets/images/29.png',
-                  scale: 2,
+                  scale: 2.5,
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: images,
+              InkWell(
+                onTap: () {
+                  myAlert(context);
+                },
+                splashColor: Colors.transparent, // 물결 효과를 투명하게
+                highlightColor: Colors.transparent,
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: images,
+                  ),
                 ),
               ),
             ],
