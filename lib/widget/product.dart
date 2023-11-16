@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:seol/pages/search/2.dart';
+import 'package:seol/pages/search/3.dart';
 import 'package:seol/utils/color.dart';
 
 class ProductPage extends StatefulWidget {
@@ -54,13 +56,81 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset('assets/images/34.png'),
-            // ... 기타 위젯들
-            Container(
+    return Scaffold(
+      body: Stack(children: [
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset('assets/images/34.png'),
+              // ... 기타 위젯들
+              Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white, // 박스의 배경색
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1), // 그림자의 색상과 투명도
+                        offset: const Offset(0, 4), // x축 방향으로 0, y축 방향으로 4의 오프셋
+                        blurRadius: 4.0, // 흐림 정도
+                      ),
+                    ],
+                  ),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 15, top: 15, bottom: 10),
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const Search2(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                          ),
+                        );
+                      },
+                      child: Image.asset('assets/images/35.png'))),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: const EdgeInsets.only(
+                  left: 10,
+                ),
+                height: 60,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    String category = categories[index];
+                    bool isSelected = selectedCategories.contains(category);
+
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: ChoiceChip(
+                        label: Text(category),
+                        selected: isSelected,
+                        onSelected: (bool selected) {
+                          _handleCategorySelection(category, selected);
+                        },
+                        selectedColor: ColorList.brown,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          side: BorderSide(
+                            color: isSelected
+                                ? ColorList.brown
+                                : Colors
+                                    .grey, // 선택된 아이템에는 ColorList.brown, 그 외에는 Colors.grey
+                            // 선택된 아이템에는 두께를 2.0, 그 외에는 1.0
+                          ),
+                        ),
+                        labelStyle: TextStyle(
+                          color: isSelected ? Colors.white : Colors.grey,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Container(
                 decoration: BoxDecoration(
                   color: Colors.white, // 박스의 배경색
                   boxShadow: [
@@ -71,152 +141,109 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ],
                 ),
-                padding: const EdgeInsets.only(
-                    left: 20, right: 15, top: 15, bottom: 10),
-                child: Image.asset('assets/images/35.png')),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: const EdgeInsets.only(
-                left: 10,
-              ),
-              height: 60,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                itemBuilder: (BuildContext context, int index) {
-                  String category = categories[index];
-                  bool isSelected = selectedCategories.contains(category);
-
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: ChoiceChip(
-                      label: Text(category),
-                      selected: isSelected,
-                      onSelected: (bool selected) {
-                        _handleCategorySelection(category, selected);
-                      },
-                      selectedColor: ColorList.brown,
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        side: BorderSide(
-                          color: isSelected
-                              ? ColorList.brown
-                              : Colors
-                                  .grey, // 선택된 아이템에는 ColorList.brown, 그 외에는 Colors.grey
-                          // 선택된 아이템에는 두께를 2.0, 그 외에는 1.0
+                padding: const EdgeInsets.only(left: 15, bottom: 15),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: Image.asset(
+                          'assets/images/36.png',
+                          scale: 2,
                         ),
                       ),
-                      labelStyle: TextStyle(
-                        color: isSelected ? Colors.white : Colors.grey,
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white, // 박스의 배경색
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1), // 그림자의 색상과 투명도
-                    offset: const Offset(0, 4), // x축 방향으로 0, y축 방향으로 4의 오프셋
-                    blurRadius: 4.0, // 흐림 정도
+                      Container(
+                        padding: const EdgeInsets.only(
+                          left: 10,
+                        ),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: ColorList.grey),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: DropdownButton(
+                          underline: const SizedBox(),
+                          hint: const Text(
+                            '최신순',
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
+                          elevation: 0,
+                          value: valueSel,
+                          onChanged: (value) {
+                            setState(() {
+                              valueSel = value;
+                            });
+                          },
+                          items: ListItem.map((valueItem) {
+                            return DropdownMenuItem(
+                              value: valueItem,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    valueItem,
+                                    style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                          // 드롭다운 메뉴의 모서리에 라운드 모양 추가
+                          dropdownColor: Colors.white, // 메뉴의 배경색 설정
+                          borderRadius: BorderRadius.circular(8), // 모서리 라운드 설정
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Image.asset(
+                        'assets/images/37.png',
+                        scale: 2,
+                      )
+                    ],
                   ),
-                ],
-              ),
-              padding: const EdgeInsets.only(left: 15, bottom: 15),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/36.png',
-                      scale: 2,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                      ),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: ColorList.grey),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: DropdownButton(
-                        underline: const SizedBox(),
-                        hint: const Text(
-                          '최신순',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold),
-                        ),
-                        elevation: 0,
-                        value: valueSel,
-                        onChanged: (value) {
-                          setState(() {
-                            valueSel = value;
-                          });
-                        },
-                        items: ListItem.map((valueItem) {
-                          return DropdownMenuItem(
-                            value: valueItem,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  valueItem,
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                        // 드롭다운 메뉴의 모서리에 라운드 모양 추가
-                        dropdownColor: Colors.white, // 메뉴의 배경색 설정
-                        borderRadius: BorderRadius.circular(8), // 모서리 라운드 설정
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Image.asset(
-                      'assets/images/37.png',
-                      scale: 2,
-                    )
-                  ],
                 ),
               ),
+              Container(
+                padding: const EdgeInsets.all(15),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const Search3(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                        ),
+                      );
+                    },
+                    child: Image.asset('assets/images/38.png')),
+              )
+            ],
+          ),
+        ),
+        Positioned(
+          bottom: 16, // 하단에서의 간격
+          right: 16, // 우측에서의 간격
+          child: Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(999), // 원형 모양
+              color: Colors.black,
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: Image.asset('assets/images/38.png'),
-            )
-          ],
-        ),
-      ),
-      Positioned(
-        bottom: 16, // 하단에서의 간격
-        right: 16, // 우측에서의 간격
-        child: Container(
-          width: 40,
-          height: 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999), // 원형 모양
-            color: Colors.black,
-          ),
-          child: const Icon(
-            Icons.shopping_bag_outlined,
-            color: Colors.white,
+            child: const Icon(
+              Icons.shopping_bag_outlined,
+              color: Colors.white,
+            ),
           ),
         ),
-      ),
-    ]);
+      ]),
+    );
   }
 }

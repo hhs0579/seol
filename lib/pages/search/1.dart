@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seol/utils/color.dart';
+import 'package:seol/widget/drawer.dart';
 import 'package:seol/widget/market.dart';
 
 import '../../widget/product.dart';
@@ -26,6 +27,7 @@ class _search1State extends State<search1> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: const CustomDrawer(),
       backgroundColor: Colors.white,
       body: Column(
         children: [
