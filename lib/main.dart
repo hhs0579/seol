@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seol/bottom.dart';
 import 'package:seol/model/logincheckmodel.dart';
 import 'package:provider/provider.dart';
+import 'package:seol/tutorial/1.dart';
 import 'package:seol/widget/userProvider.dart';
 
 void main() {

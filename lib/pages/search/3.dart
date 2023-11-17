@@ -11,12 +11,12 @@ class Search3 extends StatefulWidget {
 
 class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-    final PageController _controller = PageController();
+  final PageController _controller = PageController();
   final List<String> _imageList = [
-    'assets/images/image1.png',
-    'assets/images/image2.png',
-    'assets/images/image3.png',
-    'assets/images/image4.png',
+    'assets/images/56.png',
+    'assets/images/57.png',
+    'assets/images/58.png',
+    'assets/images/59.png',
   ];
   @override
   void initState() {
@@ -64,128 +64,116 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
             child: Column(
               children: [
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/47.png'),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white, // 여기서 배경색을 설정할 수 있습니다.
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(40), // 상단 왼쪽 모서리 둥글게
-                              topRight: Radius.circular(40), // 상단 오른쪽 모서리 둥글게
+                  child: Stack(
+                    children: [
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Image.asset('assets/images/47.png'),
+                            const SizedBox(
+                              height: 30,
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black
-                                    .withOpacity(0.1), // 그림자 색상 및 투명도 설정
-                                offset: const Offset(
-                                    0, -2), // 그림자 위치 조정 (상단에 그림자가 나타나도록)
-                                blurRadius: 6.0, // 그림자의 흐림 정도
-                                spreadRadius: 0, // 그림자의 확산 정도
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white, // 여기서 배경색을 설정할 수 있습니다.
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(40), // 상단 왼쪽 모서리 둥글게
+                                  topRight:
+                                      Radius.circular(40), // 상단 오른쪽 모서리 둥글게
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black
+                                        .withOpacity(0.1), // 그림자 색상 및 투명도 설정
+                                    offset: const Offset(
+                                        0, -2), // 그림자 위치 조정 (상단에 그림자가 나타나도록)
+                                    blurRadius: 6.0, // 그림자의 흐림 정도
+                                    spreadRadius: 0, // 그림자의 확산 정도
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, right: 20, top: 10),
-                            child: TabBar(
-                              controller: _tabController,
-                              labelColor: ColorList.brown, // 선택된 탭의 텍스트 색상
-                              unselectedLabelColor:
-                                  Colors.grey, // 선택되지 않은 탭의 텍스트 색상
-                              indicatorColor:
-                                  ColorList.brown, // 선택된 탭 아래의 지시선 색상
-                              tabs: const [
-                                Tab(
-                                  child: Text(
-                                    '상품정보',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Tab(
-                                  child: Text(
-                                    '리뷰(0)',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Tab(
-                                  child: Text(
-                                    '문의',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: height * 2.5,
-                          child: TabBarView(
-                            controller: _tabController,
-                            children: [
-                              SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    ExpansionTile(
-                                      title: const Text(
-                                        "사이즈 알림표",
+                              child: Container(
+                                padding: const EdgeInsets.only(
+                                    left: 20, right: 20, top: 10),
+                                child: TabBar(
+                                  controller: _tabController,
+                                  labelColor: ColorList.brown, // 선택된 탭의 텍스트 색상
+                                  unselectedLabelColor:
+                                      Colors.grey, // 선택되지 않은 탭의 텍스트 색상
+                                  indicatorColor:
+                                      ColorList.brown, // 선택된 탭 아래의 지시선 색상
+                                  tabs: const [
+                                    Tab(
+                                      child: Text(
+                                        '상품정보',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14),
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.only(
-                                              left: 20, right: 20, bottom: 20),
-                                          child: InkWell(
-                                              onTap: () {
-                                                setState(() {
-                                                  a = !a;
-                                                });
-                                              },
-                                              child: a
-                                                  ? Image.asset(
-                                                      'assets/images/49.png')
-                                                  : Image.asset(
-                                                      'assets/images/48.png')),
-                                        ),
-                                      ],
                                     ),
-                                    InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            b = !b;
-                                          });
-                                        },
-                                        child: !b
-                                            ? Container(
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: ColorList.grey)),
-                                                padding: const EdgeInsets.only(
-                                                    left: 15),
-                                                alignment: Alignment.centerLeft,
-                                                child: const Text(
-                                                  '제품 상세 정보',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              )
-                                            : Column(
-                                                children: [
-                                                  Container(
+                                    Tab(
+                                      child: Text(
+                                        '리뷰(0)',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Tab(
+                                      child: Text(
+                                        '문의',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              height: height * 2.5,
+                              child: TabBarView(
+                                controller: _tabController,
+                                children: [
+                                  SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        ExpansionTile(
+                                          title: const Text(
+                                            "사이즈 알림표",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20,
+                                                  right: 20,
+                                                  bottom: 20),
+                                              child: InkWell(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      a = !a;
+                                                    });
+                                                  },
+                                                  child: a
+                                                      ? Image.asset(
+                                                          'assets/images/49.png')
+                                                      : Image.asset(
+                                                          'assets/images/48.png')),
+                                            ),
+                                          ],
+                                        ),
+                                        InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                b = !b;
+                                              });
+                                            },
+                                            child: !b
+                                                ? Container(
                                                     height: 50,
                                                     decoration: BoxDecoration(
                                                         border: Border.all(
@@ -202,52 +190,55 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                           fontWeight:
                                                               FontWeight.bold),
                                                     ),
-                                                  ),
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15,
-                                                            top: 15,
-                                                            bottom: 15),
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    width: width,
-                                                    color:
-                                                        const Color(0xffF2F2F2),
-                                                    child: Image.asset(
-                                                      'assets/images/51.png',
-                                                      scale: 2,
-                                                    ),
                                                   )
-                                                ],
-                                              )),
-                                    InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            c = !c;
-                                          });
-                                        },
-                                        child: !c
-                                            ? Container(
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color: ColorList
-                                                                .grey))),
-                                                padding: const EdgeInsets.only(
-                                                    left: 15),
-                                                alignment: Alignment.centerLeft,
-                                                child: const Text(
-                                                  '배송 정보',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              )
-                                            : Column(
-                                                children: [
-                                                  Container(
+                                                : Column(
+                                                    children: [
+                                                      Container(
+                                                        height: 50,
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: ColorList
+                                                                    .grey)),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(left: 15),
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: const Text(
+                                                          '제품 상세 정보',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 15,
+                                                                top: 15,
+                                                                bottom: 15),
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        width: width,
+                                                        color: const Color(
+                                                            0xffF2F2F2),
+                                                        child: Image.asset(
+                                                          'assets/images/51.png',
+                                                          scale: 2,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                        InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                c = !c;
+                                              });
+                                            },
+                                            child: !c
+                                                ? Container(
                                                     height: 50,
                                                     decoration: BoxDecoration(
                                                         border: Border(
@@ -265,52 +256,56 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                           fontWeight:
                                                               FontWeight.bold),
                                                     ),
-                                                  ),
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15,
-                                                            top: 15,
-                                                            bottom: 15),
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    width: width,
-                                                    color:
-                                                        const Color(0xffF2F2F2),
-                                                    child: Image.asset(
-                                                      'assets/images/52.png',
-                                                      scale: 2,
-                                                    ),
                                                   )
-                                                ],
-                                              )),
-                                    InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            d = !d;
-                                          });
-                                        },
-                                        child: !d
-                                            ? Container(
-                                                height: 50,
-                                                decoration: BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color: ColorList
-                                                                .grey))),
-                                                padding: const EdgeInsets.only(
-                                                    left: 15),
-                                                alignment: Alignment.centerLeft,
-                                                child: const Text(
-                                                  '환불/교환 정보',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              )
-                                            : Column(
-                                                children: [
-                                                  Container(
+                                                : Column(
+                                                    children: [
+                                                      Container(
+                                                        height: 50,
+                                                        decoration: BoxDecoration(
+                                                            border: Border(
+                                                                bottom: BorderSide(
+                                                                    color: ColorList
+                                                                        .grey))),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(left: 15),
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: const Text(
+                                                          '배송 정보',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 15,
+                                                                top: 15,
+                                                                bottom: 15),
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        width: width,
+                                                        color: const Color(
+                                                            0xffF2F2F2),
+                                                        child: Image.asset(
+                                                          'assets/images/52.png',
+                                                          scale: 2,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                        InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                d = !d;
+                                              });
+                                            },
+                                            child: !d
+                                                ? Container(
                                                     height: 50,
                                                     decoration: BoxDecoration(
                                                         border: Border(
@@ -328,36 +323,138 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                           fontWeight:
                                                               FontWeight.bold),
                                                     ),
-                                                  ),
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15,
-                                                            top: 15,
-                                                            bottom: 15),
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    width: width,
-                                                    color:
-                                                        const Color(0xffF2F2F2),
-                                                    child: Image.asset(
-                                                      'assets/images/53.png',
-                                                      scale: 2,
-                                                    ),
                                                   )
-                                                ],
-                                              )),
-                                    Image.asset('assets/images/50.png')
-                                  ],
-                                ),
-                              ), // 첫 번째 탭 내용
-                              const Icon(Icons.directions_transit), // 두 번째 탭 내용
-                              const Icon(Icons.directions_bike), // 세 번째 탭 내용
-                            ],
+                                                : Column(
+                                                    children: [
+                                                      Container(
+                                                        height: 50,
+                                                        decoration: BoxDecoration(
+                                                            border: Border(
+                                                                bottom: BorderSide(
+                                                                    color: ColorList
+                                                                        .grey))),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(left: 15),
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: const Text(
+                                                          '환불/교환 정보',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 15,
+                                                                top: 15,
+                                                                bottom: 15),
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        width: width,
+                                                        color: const Color(
+                                                            0xffF2F2F2),
+                                                        child: Image.asset(
+                                                          'assets/images/53.png',
+                                                          scale: 2,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                        Stack(
+                                          children: [
+                                            Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 500,
+                                                  child: PageView.builder(
+                                                    controller: _controller,
+                                                    itemCount:
+                                                        _imageList.length,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return Image.asset(
+                                                          _imageList[index]);
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                              left: 10,
+                                              top: 0,
+                                              bottom: 0,
+                                              child: Center(
+                                                child: IconButton(
+                                                  icon: const Icon(
+                                                      Icons.arrow_back_ios,
+                                                      color: Colors.white),
+                                                  onPressed: () {
+                                                    _controller.previousPage(
+                                                      duration: const Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.easeInOut,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              right: 10,
+                                              top: 0,
+                                              bottom: 0,
+                                              child: Center(
+                                                child: IconButton(
+                                                  icon: const Icon(
+                                                      Icons.arrow_forward_ios,
+                                                      color: Colors.white),
+                                                  onPressed: () {
+                                                    _controller.nextPage(
+                                                      duration: const Duration(
+                                                          milliseconds: 300),
+                                                      curve: Curves.easeInOut,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ), // 첫 번째 탭 내용
+                                  const Icon(
+                                      Icons.directions_transit), // 두 번째 탭 내용
+                                  const Icon(
+                                      Icons.directions_bike), // 세 번째 탭 내용
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 16, // 하단에서의 간격
+                        right: 16, // 우측에서의 간격
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(999), // 원형 모양
+                            color: Colors.black,
+                          ),
+                          child: const Icon(
+                            Icons.shopping_bag_outlined,
+                            color: Colors.white,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
