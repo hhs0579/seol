@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:seol/utils/color.dart';
 import 'package:seol/widget/userProvider.dart';
 
+import '../mypage/1.dart';
+
 class home1 extends StatelessWidget {
   const home1({super.key});
 
@@ -50,43 +52,56 @@ class home1 extends StatelessWidget {
                                       'assets/images/11.png',
                                       scale: 2,
                                     ),
-                                    Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            const Text(
-                                              '마이페이지',
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              '${model.nickname}님',
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            const Text(
-                                              '반가워요!',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 16),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 60,
-                                          child: Image.asset(
-                                            'assets/images/12.png',
-                                            scale: 1,
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const MyPage1(), // 여기에 새로운 페이지 위젯을 넣으세요.
                                           ),
-                                        )
-                                      ],
+                                        );
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              const Text(
+                                                '마이페이지',
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                '${model.nickname}님',
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              const Text(
+                                                '반가워요!',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 60,
+                                            child: Image.asset(
+                                              'assets/images/12.png',
+                                              scale: 1,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),

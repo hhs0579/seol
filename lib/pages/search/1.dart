@@ -128,13 +128,4 @@ class _search1State extends State<search1> {
       ),
     );
   }
-
-  Widget _buildPageContent(String text, Color color) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        color: Colors.white,
-      ),
-    );
-  }
 }

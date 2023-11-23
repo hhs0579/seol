@@ -54,8 +54,8 @@ class _login6State extends State<login6> {
                             fontWeight: FontWeight.bold,
                             fontSize: 26),
                       ),
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             '요즘 주로 입는 스타일',
                             style: TextStyle(
@@ -75,8 +75,8 @@ class _login6State extends State<login6> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text('가장 유사한 것을 '),
                           Text(
                             '3개 이상 ',
@@ -162,7 +162,10 @@ class _login6State extends State<login6> {
                   ),
                   child: const Text(
                     '선택 완료',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
                   ),
                 ),
               ),

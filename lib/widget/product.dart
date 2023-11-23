@@ -91,8 +91,9 @@ class _ProductPageState extends State<ProductPage> {
                 height: 10,
               ),
               Container(
+                color: Colors.white,
                 padding: const EdgeInsets.only(
-                  left: 10,
+                  left: 2,
                 ),
                 height: 60,
                 child: ListView.builder(
@@ -103,27 +104,30 @@ class _ProductPageState extends State<ProductPage> {
                     bool isSelected = selectedCategories.contains(category);
 
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: ChoiceChip(
-                        label: Text(category),
-                        selected: isSelected,
-                        onSelected: (bool selected) {
-                          _handleCategorySelection(category, selected);
+                      padding: const EdgeInsets.only(
+                          left: 3, right: 3, top: 10, bottom: 10),
+                      child: TextButton(
+                        onPressed: () {
+                          _handleCategorySelection(category, !isSelected);
                         },
-                        selectedColor: ColorList.brown,
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          side: BorderSide(
-                            color: isSelected
-                                ? ColorList.brown
-                                : Colors
-                                    .grey, // 선택된 아이템에는 ColorList.brown, 그 외에는 Colors.grey
-                            // 선택된 아이템에는 두께를 2.0, 그 외에는 1.0
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            isSelected ? ColorList.brown : Colors.white,
+                          ),
+                          shape: MaterialStateProperty.all<OutlinedBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              side: BorderSide(
+                                color:
+                                    isSelected ? ColorList.brown : Colors.grey,
+                              ),
+                            ),
                           ),
                         ),
-                        labelStyle: TextStyle(
-                          color: isSelected ? Colors.white : Colors.grey,
+                        child: Text(
+                          category,
+                          style: TextStyle(
+                              color: isSelected ? Colors.white : Colors.grey),
                         ),
                       ),
                     );

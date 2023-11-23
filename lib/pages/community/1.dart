@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:seol/pages/community/3.dart';
+
+import '2.dart';
 
 class community1 extends StatelessWidget {
   const community1({super.key});
@@ -37,11 +40,22 @@ class community1 extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 5),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Image.asset('assets/images/76.png'),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const community2(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Image.asset('assets/images/76.png'),
+                  ),
                 ),
               ),
               Container(
@@ -64,10 +78,21 @@ class community1 extends StatelessWidget {
                 ),
               ),
               SingleChildScrollView(
-                child: Container(
-                  padding: const EdgeInsets.only(
-                      top: 20, bottom: 40, left: 10, right: 10),
-                  child: Image.asset('assets/images/77.png'),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const community3(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                        top: 20, bottom: 40, left: 10, right: 10),
+                    child: Image.asset('assets/images/77.png'),
+                  ),
                 ),
               )
             ],

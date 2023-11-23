@@ -325,6 +325,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                     ),
                                                   )
                                                 : Column(
+                                                  
                                                     children: [
                                                       Container(
                                                         height: 50,

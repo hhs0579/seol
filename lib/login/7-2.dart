@@ -166,7 +166,10 @@ class _login7_2State extends State<login7_2> {
                   ),
                   child: const Text(
                     '선택 완료',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
                   ),
                 ),
               ),

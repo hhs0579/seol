@@ -285,3 +285,55 @@ void showCustomDialog(BuildContext context) {
     },
   );
 }
+
+void showCustomDialog2(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent, // 배경 투명 설정
+    builder: (BuildContext bc) {
+      return Container(
+          margin: const EdgeInsets.symmetric(
+              horizontal: 40, vertical: 40), // 모달의 양 옆과 하단에 마진 추가
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(30), // 상단 모서리 둥글게
+            boxShadow: const [
+              // 그림자 추가
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0,
+                spreadRadius: 0.0,
+                offset: Offset(0.0, 0.0),
+              ),
+            ],
+          ),
+          child: Image.asset('assets/images/81.png'));
+    },
+  );
+}
+
+void showCustomDialog3(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent, // 배경 투명 설정
+    builder: (BuildContext bc) {
+      return Container(
+          margin: const EdgeInsets.symmetric(
+              horizontal: 40, vertical: 40), // 모달의 양 옆과 하단에 마진 추가
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(30), // 상단 모서리 둥글게
+            boxShadow: const [
+              // 그림자 추가
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0,
+                spreadRadius: 0.0,
+                offset: Offset(0.0, 0.0),
+              ),
+            ],
+          ),
+          child: Image.asset('assets/images/108.png'));
+    },
+  );
+}
