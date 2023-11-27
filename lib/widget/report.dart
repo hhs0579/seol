@@ -47,48 +47,54 @@ class _reportState extends State<report> {
                         a = !a;
                       });
                     },
-                    child: Row(
-                      children: [
-                        Text(
-                          '${model.nickname} ',
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                        const Text(
-                          '님의 사이즈',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down,
-                          color: ColorList.grey,
-                        ),
-                      ],
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Text(
+                            '${model.nickname} ',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                          const Text(
+                            '님의 사이즈',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            color: ColorList.grey,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Row(
                     children: [
                       Text(
                         '키 ${model.height}cm',
-                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 12),
                       ),
                       const SizedBox(
                         width: 20,
                       ),
                       Text(
                         '몸무게 ${model.weight}kg',
-                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 12),
                       ),
                       const SizedBox(
                         width: 20,
                       ),
                       Text(
                         '발 ${model.foot}mm',
-                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ],
                   )
@@ -133,7 +139,7 @@ class _reportState extends State<report> {
                                   fit: BoxFit.cover,
                                 ),
                         ),
-    
+
                         IconButton(
                           icon: const Icon(Icons.arrow_forward_ios,
                               color: Colors.white),

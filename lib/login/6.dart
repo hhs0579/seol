@@ -159,6 +159,9 @@ class _login6State extends State<login6> {
                     backgroundColor: isButtonEnabled
                         ? Colors.blue
                         : Colors.grey, // 버튼 활성화/비활성화 색상
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero, // No rounded corners
+                    ),
                   ),
                   child: const Text(
                     '선택 완료',

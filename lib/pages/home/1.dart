@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seol/bottom.dart';
+import 'package:seol/pages/home/2.dart';
 import 'package:seol/utils/color.dart';
 import 'package:seol/widget/userProvider.dart';
 
@@ -30,16 +32,28 @@ class home1 extends StatelessWidget {
                                       const EdgeInsets.only(top: 60, right: 20),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: const [
-                                      Icon(Icons.bookmark_border_outlined),
-                                      SizedBox(
+                                    children: [
+                                      const Icon(
+                                          Icons.bookmark_border_outlined),
+                                      const SizedBox(
                                         width: 5,
                                       ),
-                                      Icon(Icons.notifications_none_outlined),
-                                      SizedBox(
+                                      InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const home2(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                                              ),
+                                            );
+                                          },
+                                          child: const Icon(Icons
+                                              .notifications_none_outlined)),
+                                      const SizedBox(
                                         width: 5,
                                       ),
-                                      Icon(Icons.shopping_bag_outlined)
+                                      const Icon(Icons.shopping_bag_outlined)
                                     ],
                                   )),
                               Container(
@@ -106,13 +120,26 @@ class home1 extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Container(
-                                  margin: const EdgeInsets.only(right: 20),
-                                  width: width,
-                                  height: height * 0.5,
-                                  child: Image.asset(
-                                    'assets/images/13.png',
-                                  )),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const Bottom(
+                                          showBottomSheet: false,
+                                          initialIndex:
+                                              2), // 여기에 새로운 페이지 위젯을 넣으세요.
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                    margin: const EdgeInsets.only(right: 20),
+                                    width: width,
+                                    height: height * 0.5,
+                                    child: Image.asset(
+                                      'assets/images/13.png',
+                                    )),
+                              ),
                               Container(
                                   color: Colors.white,
                                   child: Image.asset('assets/images/14.png'))
@@ -140,8 +167,8 @@ class home1 extends StatelessWidget {
                                       style: TextStyle(fontSize: 16),
                                     )
                                   ]),
-                                  Row(
-                                    children: const [
+                                  const Row(
+                                    children: [
                                       Text('더보기'),
                                       Icon(
                                         Icons.arrow_forward_ios,

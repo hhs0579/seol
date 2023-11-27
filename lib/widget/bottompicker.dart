@@ -11,7 +11,11 @@ void showPickerModal(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return StatefulBuilder(builder: (context, setState) {
-        return SizedBox(
+        return Container(
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30))),
           height: MediaQuery.of(context).size.height * 0.6,
           child: Column(
             children: [
@@ -88,7 +92,7 @@ void showPickerModal(BuildContext context) {
                     ]),
                     buildPickersPage([
                       ['상의', '하의', '신발', '가방'],
-                      ['선택지 2-1', '선택지 2-2', '선택지 2-3'],
+                      ['면바지', '슬랙스', '반바지', '청바지'],
                       []
                     ]),
                   ],
@@ -113,7 +117,7 @@ void showPickerModal(BuildContext context) {
                   height: 80,
                   color: ColorList.black,
                   child: const Text(
-                    '입력완료',
+                    '선택완료',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -160,12 +164,12 @@ Widget buildPickersPage(List<List<String>> items) {
 
 Widget buildColorPicker() {
   List<Color> colors = [
-    Colors.black,
-    Colors.white,
-    Colors.grey,
-    Colors.red,
-    Colors.green,
-    Colors.blue
+    const Color(0xffB2B2B2),
+    const Color(0xffB2B9CC),
+    const Color(0x000000ff),
+    const Color(0xff1946BB),
+    const Color(0xffC4E6FF),
+    const Color(0xffB2DEC7),
   ]; // 색상 리스트
 
   return Container(

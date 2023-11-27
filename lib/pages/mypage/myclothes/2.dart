@@ -58,7 +58,7 @@ class _MyClothes2State extends State<MyClothes2> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    '2. 등록할 내옷의 계절 종류 색상을 선택해주세요',
+                    '2. 등록할 내옷의 계절 종류 색상을 \n선택해주세요',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   const SizedBox(height: 20),
@@ -99,9 +99,12 @@ class _MyClothes2State extends State<MyClothes2> {
       ),
       child: DropdownButton(
         underline: const SizedBox(),
-        hint: const Text(
+        hint: Text(
           '종류',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: ColorList.black),
         ),
         elevation: 0,
         value: valueSel,
@@ -118,8 +121,10 @@ class _MyClothes2State extends State<MyClothes2> {
               children: [
                 Text(
                   valueItem,
-                  style: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: ColorList.black),
                 ),
               ],
             ),

@@ -10,7 +10,12 @@ import 'package:seol/widget/%08bottomsheet.dart';
 
 class Bottom extends StatefulWidget {
   final bool showBottomSheet;
-  const Bottom({super.key, required this.showBottomSheet});
+  final int initialIndex; // 추가된 코드
+
+  const Bottom(
+      {super.key,
+      required this.showBottomSheet,
+      this.initialIndex = 0}); // 수정된 코드
 
   @override
   State<Bottom> createState() => _BottomState();
@@ -36,6 +41,12 @@ class _BottomState extends State<Bottom> {
     const community1(),
     const office1()
   ];
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _selectedIndex = widget.initialIndex; // 추가된 코드
+  }
 
   // 네비게이션 바 항목을 누를 때 호출될 함수
   void _onItemTapped(int index) {

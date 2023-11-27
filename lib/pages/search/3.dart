@@ -215,7 +215,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                       Container(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .only(
+                                                                .only(
                                                                 left: 15,
                                                                 top: 15,
                                                                 bottom: 15),
@@ -282,7 +282,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                       Container(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .only(
+                                                                .only(
                                                                 left: 15,
                                                                 top: 15,
                                                                 bottom: 15),
@@ -325,7 +325,6 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                     ),
                                                   )
                                                 : Column(
-                                                  
                                                     children: [
                                                       Container(
                                                         height: 50,
@@ -350,7 +349,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                       Container(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .only(
+                                                                .only(
                                                                 left: 15,
                                                                 top: 15,
                                                                 bottom: 15),
@@ -363,68 +362,121 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                           'assets/images/53.png',
                                                           scale: 2,
                                                         ),
-                                                      )
+                                                      ),
                                                     ],
                                                   )),
-                                        Stack(
-                                          children: [
-                                            Column(
-                                              children: [
-                                                SizedBox(
-                                                  height: 500,
-                                                  child: PageView.builder(
-                                                    controller: _controller,
-                                                    itemCount:
-                                                        _imageList.length,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      return Image.asset(
-                                                          _imageList[index]);
-                                                    },
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 20, left: 20),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3),
                                                   ),
+                                                ],
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(10))),
+                                            padding: const EdgeInsets.only(
+                                                left: 20, right: 20),
+                                            child: Column(
+                                              children: [
+                                                Stack(
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        SizedBox(
+                                                          height: 500,
+                                                          child:
+                                                              PageView.builder(
+                                                            controller:
+                                                                _controller,
+                                                            itemCount:
+                                                                _imageList
+                                                                    .length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              return Image.asset(
+                                                                  _imageList[
+                                                                      index]);
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Positioned(
+                                                      left: 10,
+                                                      top: 0,
+                                                      bottom: 0,
+                                                      child: Center(
+                                                        child: IconButton(
+                                                          icon: const Icon(
+                                                              Icons
+                                                                  .arrow_back_ios,
+                                                              color:
+                                                                  Colors.white),
+                                                          onPressed: () {
+                                                            _controller
+                                                                .previousPage(
+                                                              duration:
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          300),
+                                                              curve: Curves
+                                                                  .easeInOut,
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                      right: 10,
+                                                      top: 0,
+                                                      bottom: 0,
+                                                      child: Center(
+                                                        child: IconButton(
+                                                          icon: const Icon(
+                                                              Icons
+                                                                  .arrow_forward_ios,
+                                                              color:
+                                                                  Colors.white),
+                                                          onPressed: () {
+                                                            _controller
+                                                                .nextPage(
+                                                              duration:
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          300),
+                                                              curve: Curves
+                                                                  .easeInOut,
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
+                                                Image.asset(
+                                                  'assets/images/135.png',
+                                                  scale: 2,
+                                                ),
+                                                const SizedBox(
+                                                  height: 20,
+                                                )
                                               ],
                                             ),
-                                            Positioned(
-                                              left: 10,
-                                              top: 0,
-                                              bottom: 0,
-                                              child: Center(
-                                                child: IconButton(
-                                                  icon: const Icon(
-                                                      Icons.arrow_back_ios,
-                                                      color: Colors.white),
-                                                  onPressed: () {
-                                                    _controller.previousPage(
-                                                      duration: const Duration(
-                                                          milliseconds: 300),
-                                                      curve: Curves.easeInOut,
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              right: 10,
-                                              top: 0,
-                                              bottom: 0,
-                                              child: Center(
-                                                child: IconButton(
-                                                  icon: const Icon(
-                                                      Icons.arrow_forward_ios,
-                                                      color: Colors.white),
-                                                  onPressed: () {
-                                                    _controller.nextPage(
-                                                      duration: const Duration(
-                                                          milliseconds: 300),
-                                                      curve: Curves.easeInOut,
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                          ),
                                         ),
+                                        const SizedBox(
+                                          height: 20,
+                                        )
                                       ],
                                     ),
                                   ), // 첫 번째 탭 내용

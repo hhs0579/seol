@@ -163,10 +163,16 @@ class _login7State extends State<login7> {
                     backgroundColor: isButtonEnabled
                         ? ColorList.brown
                         : Colors.grey, // 버튼 활성화/비활성화 색상
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero, // No rounded corners
+                    ),
                   ),
                   child: const Text(
                     '선택 완료',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,color: Colors.white),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
                   ),
                 ),
               ),

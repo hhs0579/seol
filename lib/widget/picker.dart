@@ -8,7 +8,6 @@ void showTopSizePicker(BuildContext context, UserProvider userProvider) {
 
   showModalBottomSheet(
     shape: const RoundedRectangleBorder(
-      // This line sets the shape with rounded corners
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
@@ -19,18 +18,22 @@ void showTopSizePicker(BuildContext context, UserProvider userProvider) {
       double height = MediaQuery.of(context).size.height;
       double width = MediaQuery.of(context).size.width;
       return ClipRRect(
-        child: SizedBox(
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            color: Colors.white,
+          ),
           height: 340,
-          // Set this to the desired height for your picker
           child: Column(
             children: [
               InkWell(
                 onTap: () {
                   userProvider.top =
                       ['S', 'M', 'L', 'XL', 'XXL'][selectedSizeIndex];
-                  Navigator.pop(context); // 모달을 닫습니다.
+                  Navigator.pop(context); // Close the modal.
                 },
-                splashColor: Colors.transparent, // 물결 효과를 투명하게
+                splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 child: Container(
                   padding: const EdgeInsets.all(20),
@@ -60,43 +63,71 @@ void showTopSizePicker(BuildContext context, UserProvider userProvider) {
               SizedBox(
                 height: 200,
                 child: CupertinoPicker(
-                  itemExtent: 32.0, // Height of each item
+                  itemExtent: 50.0, // Height of each item
                   onSelectedItemChanged: (int selectedIndex) {
-                    // This is where you update the provider with the selected value
-                    // Assuming sizes is a list ['S', 'M', 'L', 'XL', 'XXL']
                     selectedSizeIndex = selectedIndex;
                   },
                   children: const <Widget>[
                     Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                      'S',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
+                          'S',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
                     Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                      'M',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
+                          'M',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
                     Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                      'L',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
+                          'L',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
                     Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                      'XL',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
+                          'XL',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
                     Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
-                      'XXL',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
+                          'XXL',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -123,7 +154,12 @@ void showBottomSizePicker(BuildContext context, UserProvider userProvider) {
       double height = MediaQuery.of(context).size.height;
       double width = MediaQuery.of(context).size.width;
       return ClipRRect(
-        child: SizedBox(
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            color: Colors.white,
+          ),
           height: 340,
           // Set this to the desired height for your picker
           child: Column(
@@ -164,43 +200,58 @@ void showBottomSizePicker(BuildContext context, UserProvider userProvider) {
               SizedBox(
                 height: 200,
                 child: CupertinoPicker(
-                  itemExtent: 32.0, // Height of each item
+                  itemExtent: 50.0, // Height of each item
                   onSelectedItemChanged: (int selectedIndex) {
                     // This is where you update the provider with the selected value
                     // Assuming sizes is a list ['S', 'M', 'L', 'XL', 'XXL']
                     selectedSizeIndex = selectedIndex;
                   },
                   children: const <Widget>[
-                    Center(
-                        child: Text(
-                      'S',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      'M',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      'L',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      'XL',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      'XXL',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        'S',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        'M',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        'L',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        'XL',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        'XXL',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
                   ],
                 ),
               ),
@@ -227,7 +278,12 @@ void showFootSizePicker(BuildContext context, UserProvider userProvider) {
       double height = MediaQuery.of(context).size.height;
       double width = MediaQuery.of(context).size.width;
       return ClipRRect(
-        child: SizedBox(
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            color: Colors.white,
+          ),
           height: 340,
           // Set this to the desired height for your picker
           child: Column(
@@ -287,127 +343,184 @@ void showFootSizePicker(BuildContext context, UserProvider userProvider) {
               SizedBox(
                 height: 200,
                 child: CupertinoPicker(
-                  itemExtent: 32.0, // Height of each item
+                  itemExtent: 50.0, // Height of each item
                   onSelectedItemChanged: (int selectedIndex) {
                     // This is where you update the provider with the selected value
                     // Assuming sizes is a list ['S', 'M', 'L', 'XL', 'XXL']
                     selectedSizeIndex = selectedIndex;
                   },
                   children: const <Widget>[
-                    Center(
-                        child: Text(
-                      '220',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '225',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '230',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '235',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '240',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '245',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '250',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '255',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '260',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '265',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '270',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '275',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '280',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '285',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '290',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '295',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '300',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '305',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
-                    Center(
-                        child: Text(
-                      '310',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                    )),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '220',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '225',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '230',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '235',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '240',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '245',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '250',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '255',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '260',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '265',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '270',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '275',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '280',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '285',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '290',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '295',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '300',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '305',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Center(
+                          child: Text(
+                        '310',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      )),
+                    ),
                   ],
                 ),
               ),

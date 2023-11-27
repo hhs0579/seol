@@ -150,8 +150,7 @@ class _login6_2State extends State<login6_2> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const login7_2(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                              builder: (context) => const login7_2(),
                             ),
                           );
                         }
@@ -160,16 +159,20 @@ class _login6_2State extends State<login6_2> {
                     backgroundColor: isButtonEnabled
                         ? Colors.blue
                         : Colors.grey, // 버튼 활성화/비활성화 색상
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero, // No rounded corners
+                    ),
                   ),
                   child: const Text(
                     '선택 완료',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.white),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),

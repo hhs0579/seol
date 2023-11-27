@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:seol/pages/mypage/myclothes/2.dart';
 import 'package:seol/utils/color.dart';
 
-class mycloths extends StatelessWidget {
+class mycloths extends StatefulWidget {
   const mycloths({super.key});
 
+  @override
+  State<mycloths> createState() => _myclothsState();
+}
+
+class _myclothsState extends State<mycloths> {
+  bool a = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -29,19 +35,41 @@ class mycloths extends StatelessWidget {
         ),
         body: Column(
           children: [
-            InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyClothes2(
-                        listItem: ['자켓', '점퍼', '블레이저', '집업', '조끼', '가디건', '수트'],
-                        imagePath: 'assets/images/122.png',
-                      ), // 여기에 새로운 페이지 위젯을 넣으세요.
-                    ),
-                  );
-                },
-                child: _buildClothCategory(width, '아우터')),
+            Column(
+              children: [
+                InkWell(
+                    onTap: () {
+                      a = true;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyClothes2(
+                            listItem: [
+                              '자켓',
+                              '점퍼',
+                              '블레이저',
+                              '집업',
+                              '조끼',
+                              '가디건',
+                              '수트'
+                            ],
+                            imagePath: 'assets/images/122.png',
+                          ), // 여기에 새로운 페이지 위젯을 넣으세요.
+                        ),
+                      );
+                    },
+                    child: _buildClothCategory(width, '아우터')),
+                a
+                    ? Container(
+                        alignment: Alignment.centerLeft,
+                        child: Image.asset(
+                          'assets/images/136.png',
+                          scale: 2,
+                        ),
+                      )
+                    : Container()
+              ],
+            ),
             InkWell(
                 onTap: () {
                   Navigator.push(
@@ -63,19 +91,40 @@ class mycloths extends StatelessWidget {
                   );
                 },
                 child: _buildClothCategory(width, '상의')),
-            InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyClothes2(
-                        listItem: ['슬랙스', '반바지', '청바지', '트레이닝', '조거', '긴바지'],
-                        imagePath: 'assets/images/125.png',
-                      ), // 여기에 새로운 페이지 위젯을 넣으세요.
-                    ),
-                  );
-                },
-                child: _buildClothCategory(width, '하의')),
+            Column(
+              children: [
+                InkWell(
+                    onTap: () {
+                      a = true;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyClothes2(
+                            listItem: [
+                              '슬랙스',
+                              '반바지',
+                              '청바지',
+                              '트레이닝',
+                              '조거',
+                              '긴바지'
+                            ],
+                            imagePath: 'assets/images/125.png',
+                          ), // 여기에 새로운 페이지 위젯을 넣으세요.
+                        ),
+                      );
+                    },
+                    child: _buildClothCategory(width, '하의')),
+                a
+                    ? Container(
+                        alignment: Alignment.centerLeft,
+                        child: Image.asset(
+                          'assets/images/137.png',
+                          scale: 2,
+                        ),
+                      )
+                    : Container()
+              ],
+            ),
             InkWell(
                 onTap: () {
                   Navigator.push(
