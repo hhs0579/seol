@@ -1,13 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:seol/pages/mypage/myclothes/1.dart';
 
 import '../../utils/color.dart';
 import '../../widget/bottompicker.dart';
 
 class chatbot2 extends StatefulWidget {
-
-  const chatbot2({super.key, });
+  const chatbot2({
+    super.key,
+  });
 
   @override
   State<chatbot2> createState() => _chatbot2State();
@@ -152,24 +154,33 @@ class _chatbot2State extends State<chatbot2> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      Text(
-                        'TIP 보유 옷을 등록하고 편하게 검색해보세요!',
-                        style: TextStyle(fontSize: 12, color: ColorList.grey),
-                      ),
-                      const Text(
-                        '등록하러가기',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline),
-                      )
-                    ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const mycloths()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Text(
+                          'TIP 보유 옷을 등록하고 편하게 검색해보세요!',
+                          style: TextStyle(fontSize: 12, color: ColorList.grey),
+                        ),
+                        const Text(
+                          '등록하러가기',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline),
+                        )
+                      ],
+                    ),
                   ),
                   const Spacer(),
                   (a || b)
@@ -179,7 +190,9 @@ class _chatbot2State extends State<chatbot2> {
                               updateCState(true);
                             }
                             Navigator.pop(context);
-                            showPickerModal(context);
+                            a
+                                ? showPickerModal2(context)
+                                : showPickerModal(context);
                           },
                           splashColor: Colors.transparent, // 물결 효과를 투명하게
                           highlightColor: Colors.transparent,
@@ -300,7 +313,6 @@ class _chatbot2State extends State<chatbot2> {
                       ),
                     )
                   : Container(),
-
             ],
           ),
         ),

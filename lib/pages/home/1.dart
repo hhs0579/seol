@@ -146,43 +146,55 @@ class home1 extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(20),
-                          color: Colors.white,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(children: [
-                                    Text(
-                                      '${model.nickname}님',
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                    const Text(
-                                      '의 스타일 분석리포트',
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ]),
-                                  const Row(
-                                    children: [
-                                      Text('더보기'),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 10,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Bottom(
+                                    showBottomSheet: false,
+                                    initialIndex: 4), // 여기에 새로운 페이지 위젯을 넣으세요.
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            color: Colors.white,
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(children: [
+                                      Text(
+                                        '${model.nickname}님',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
+                                      const Text(
+                                        '의 스타일 분석리포트',
+                                        style: TextStyle(fontSize: 16),
                                       )
-                                    ],
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Image.asset('assets/images/15.png')
-                            ],
+                                    ]),
+                                    const Row(
+                                      children: [
+                                        Text('더보기'),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 10,
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Image.asset('assets/images/15.png')
+                              ],
+                            ),
                           ),
                         )
                       ],

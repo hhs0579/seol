@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:seol/pages/search/2.dart';
 import 'package:seol/pages/search/3.dart';
+import 'package:seol/pages/search/5.dart';
 import 'package:seol/utils/color.dart';
+import 'package:seol/widget/drawer.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -20,6 +22,49 @@ class _ProductPageState extends State<ProductPage> {
     "아우터",
     "신발",
     "악세사리"
+  ];
+  final List<String> categories2 = [
+    '반팔티',
+    '티셔츠',
+    '셔츠',
+    '맨투맨',
+    '후드티',
+    '조끼',
+    '민소매'
+  ];
+  final List<String> categories3 = ['슬랙스', '반바지', '청바지', '트레이닝', '조거', '긴바지'];
+
+  final List<String> categories4 = ['미니원피스', '롱원피스', '미니스커트', '미디/롱스커트'];
+
+  final List<String> categories5 = [
+    '자켓',
+    '점퍼',
+    '블레이저',
+    '집업',
+    '조끼',
+    '가디건',
+    '수트'
+  ];
+  final List<String> categories6 = [
+    '샌들',
+    '로퍼',
+    '슬리퍼',
+    '힐',
+    '스니커즈',
+    '워커',
+    '운동화',
+    '부츠'
+  ];
+  final List<String> categories7 = [
+    '양말',
+    '목걸이',
+    '팔찌',
+    '반지',
+    '시계',
+    '장갑',
+    '아이웨어',
+    '머플러',
+    '벨트',
   ];
   List ListItem = [
     '최신순',
@@ -54,9 +99,14 @@ class _ProductPageState extends State<ProductPage> {
     });
   }
 
+  void _openDrawer() {
+    Scaffold.of(context).openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const CustomDrawer(),
       body: Stack(children: [
         SingleChildScrollView(
           child: Column(
@@ -134,6 +184,282 @@ class _ProductPageState extends State<ProductPage> {
                   },
                 ),
               ),
+              if (selectedCategories.contains("상의"))
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(
+                    left: 2,
+                  ),
+                  height: 60,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories2.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String category = categories2[index];
+                      bool isSelected = selectedCategories.contains(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 3, right: 3, top: 10, bottom: 10),
+                        child: TextButton(
+                          onPressed: () {
+                            _handleCategorySelection(category, !isSelected);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              isSelected ? ColorList.brown : Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
+                                  color: isSelected
+                                      ? ColorList.brown
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            category,
+                            style: TextStyle(
+                                color: isSelected ? Colors.white : Colors.grey),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              if (selectedCategories.contains("하의"))
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(
+                    left: 2,
+                  ),
+                  height: 60,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories3.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String category = categories3[index];
+                      bool isSelected = selectedCategories.contains(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 3, right: 3, top: 10, bottom: 10),
+                        child: TextButton(
+                          onPressed: () {
+                            _handleCategorySelection(category, !isSelected);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              isSelected ? ColorList.brown : Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
+                                  color: isSelected
+                                      ? ColorList.brown
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            category,
+                            style: TextStyle(
+                                color: isSelected ? Colors.white : Colors.grey),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              if (selectedCategories.contains("원피스/세트"))
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(
+                    left: 2,
+                  ),
+                  height: 60,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories4.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String category = categories4[index];
+                      bool isSelected = selectedCategories.contains(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 3, right: 3, top: 10, bottom: 10),
+                        child: TextButton(
+                          onPressed: () {
+                            _handleCategorySelection(category, !isSelected);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              isSelected ? ColorList.brown : Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
+                                  color: isSelected
+                                      ? ColorList.brown
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            category,
+                            style: TextStyle(
+                                color: isSelected ? Colors.white : Colors.grey),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              if (selectedCategories.contains("아우터"))
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(
+                    left: 2,
+                  ),
+                  height: 60,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories5.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String category = categories5[index];
+                      bool isSelected = selectedCategories.contains(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 3, right: 3, top: 10, bottom: 10),
+                        child: TextButton(
+                          onPressed: () {
+                            _handleCategorySelection(category, !isSelected);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              isSelected ? ColorList.brown : Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
+                                  color: isSelected
+                                      ? ColorList.brown
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            category,
+                            style: TextStyle(
+                                color: isSelected ? Colors.white : Colors.grey),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              if (selectedCategories.contains("신발"))
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(
+                    left: 2,
+                  ),
+                  height: 60,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories6.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String category = categories6[index];
+                      bool isSelected = selectedCategories.contains(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 3, right: 3, top: 10, bottom: 10),
+                        child: TextButton(
+                          onPressed: () {
+                            _handleCategorySelection(category, !isSelected);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              isSelected ? ColorList.brown : Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
+                                  color: isSelected
+                                      ? ColorList.brown
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            category,
+                            style: TextStyle(
+                                color: isSelected ? Colors.white : Colors.grey),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              if (selectedCategories.contains("악세사리"))
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(
+                    left: 2,
+                  ),
+                  height: 60,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories7.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String category = categories7[index];
+                      bool isSelected = selectedCategories.contains(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 3, right: 3, top: 10, bottom: 10),
+                        child: TextButton(
+                          onPressed: () {
+                            _handleCategorySelection(category, !isSelected);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              isSelected ? ColorList.brown : Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
+                                  color: isSelected
+                                      ? ColorList.brown
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            category,
+                            style: TextStyle(
+                                color: isSelected ? Colors.white : Colors.grey),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white, // 박스의 배경색
@@ -151,7 +477,9 @@ class _ProductPageState extends State<ProductPage> {
                   child: Row(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          _openDrawer();
+                        },
                         child: Image.asset(
                           'assets/images/36.png',
                           scale: 2,
@@ -226,7 +554,21 @@ class _ProductPageState extends State<ProductPage> {
                       );
                     },
                     child: Image.asset('assets/images/38.png')),
-              )
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const Search5(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                        ),
+                      );
+                    },
+                    child: Image.asset('assets/images/38-2.png')),
+              ),
             ],
           ),
         ),

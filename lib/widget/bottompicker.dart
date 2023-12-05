@@ -138,6 +138,128 @@ void showPickerModal(BuildContext context) {
   );
 }
 
+void showPickerModal2(BuildContext context) {
+  final PageController controller = PageController();
+  int currentPage = 0;
+
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return StatefulBuilder(builder: (context, setState) {
+        return Container(
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: Column(
+            children: [
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios),
+                    onPressed: () {
+                      if (currentPage > 0) {
+                        controller.animateToPage(
+                          currentPage - 1,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.easeIn,
+                        );
+                        setState(() {
+                          currentPage--;
+                        });
+                      }
+                    },
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Image.asset(
+                          'assets/images/${25 + currentPage}.png',
+                          scale: 2),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward_ios),
+                    onPressed: () {
+                      if (currentPage < 3) {
+                        controller.animateToPage(
+                          currentPage + 1,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.easeIn,
+                        );
+                        setState(() {
+                          currentPage++;
+                        });
+                      }
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 400,
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: PageView(
+                  controller: controller,
+                  onPageChanged: (int page) {
+                    setState(() {
+                      currentPage = page;
+                    });
+                  },
+                  children: [
+                    Image.asset(
+                      'assets/images/138.png',
+                    ),
+                    Image.asset('assets/images/138.png'),
+                    Image.asset('assets/images/138.png'),
+                    Image.asset('assets/images/138.png'),
+                  ],
+                ),
+              ),
+              const Spacer(),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const chatbot3(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                    ),
+                  );
+                },
+                splashColor: Colors.transparent, // 물결 효과를 투명하게
+                highlightColor: Colors.transparent,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  height: 80,
+                  color: ColorList.black,
+                  child: const Text(
+                    '선택완료',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      });
+    },
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+    ),
+    isScrollControlled: true,
+  );
+}
+
 Widget buildPickersPage(List<List<String>> items) {
   return Padding(
     padding: const EdgeInsets.all(8.0),

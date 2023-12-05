@@ -35,6 +35,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
         child: Container(
+      padding: const EdgeInsets.all(30),
+      color: Colors.white,
       child: Image.asset('assets/images/45.png'),
     ));
   }

@@ -35,6 +35,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
   bool c = false;
   bool d = false;
   bool e = false;
+  bool f = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -139,20 +140,51 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                   SingleChildScrollView(
                                     child: Column(
                                       children: [
-                                        ExpansionTile(
-                                          title: const Text(
-                                            "사이즈 알림표",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                          children: [
-                                            Container(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20,
-                                                  right: 20,
-                                                  bottom: 20),
-                                              child: InkWell(
+                                        Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 20, right: 20),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Row(
+                                                    children: [
+                                                      Text(
+                                                        "사이즈 알림표",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 14),
+                                                      ),
+                                                      Icon(Icons
+                                                          .keyboard_arrow_down_outlined)
+                                                    ],
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        f = !f;
+                                                      });
+                                                    },
+                                                    child: f
+                                                        ? Image.asset(
+                                                            'assets/images/141.png',
+                                                            scale: 2,
+                                                          )
+                                                        : Image.asset(
+                                                            'assets/images/140.png',
+                                                            scale: 2,
+                                                          ),
+                                                  )
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              InkWell(
                                                   onTap: () {
                                                     setState(() {
                                                       a = !a;
@@ -163,208 +195,239 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                           'assets/images/49.png')
                                                       : Image.asset(
                                                           'assets/images/48.png')),
-                                            ),
-                                          ],
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                b = !b;
-                                              });
-                                            },
-                                            child: !b
-                                                ? Container(
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: ColorList
-                                                                .grey)),
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15),
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: const Text(
-                                                      '제품 상세 정보',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  )
-                                                : Column(
-                                                    children: [
-                                                      Container(
-                                                        height: 50,
-                                                        decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                                color: ColorList
-                                                                    .grey)),
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(left: 15),
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: const Text(
-                                                          '제품 상세 정보',
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 15,
-                                                                top: 15,
-                                                                bottom: 15),
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        width: width,
-                                                        color: const Color(
-                                                            0xffF2F2F2),
-                                                        child: Image.asset(
-                                                          'assets/images/51.png',
-                                                          scale: 2,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                        InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                c = !c;
-                                              });
-                                            },
-                                            child: !c
-                                                ? Container(
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                        border: Border(
-                                                            bottom: BorderSide(
-                                                                color: ColorList
-                                                                    .grey))),
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15),
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: const Text(
-                                                      '배송 정보',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  )
-                                                : Column(
-                                                    children: [
-                                                      Container(
-                                                        height: 50,
-                                                        decoration: BoxDecoration(
-                                                            border: Border(
-                                                                bottom: BorderSide(
-                                                                    color: ColorList
-                                                                        .grey))),
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(left: 15),
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: const Text(
-                                                          '배송 정보',
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 15,
-                                                                top: 15,
-                                                                bottom: 15),
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        width: width,
-                                                        color: const Color(
-                                                            0xffF2F2F2),
-                                                        child: Image.asset(
-                                                          'assets/images/52.png',
-                                                          scale: 2,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                        InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                d = !d;
-                                              });
-                                            },
-                                            child: !d
-                                                ? Container(
-                                                    height: 50,
-                                                    decoration: BoxDecoration(
-                                                        border: Border(
-                                                            bottom: BorderSide(
-                                                                color: ColorList
-                                                                    .grey))),
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 15),
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: const Text(
-                                                      '환불/교환 정보',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  )
-                                                : Column(
-                                                    children: [
-                                                      Container(
-                                                        height: 50,
-                                                        decoration: BoxDecoration(
-                                                            border: Border(
-                                                                bottom: BorderSide(
-                                                                    color: ColorList
-                                                                        .grey))),
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(left: 15),
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: const Text(
-                                                          '환불/교환 정보',
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 15,
-                                                                top: 15,
-                                                                bottom: 15),
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        width: width,
-                                                        color: const Color(
-                                                            0xffF2F2F2),
-                                                        child: Image.asset(
-                                                          'assets/images/53.png',
-                                                          scale: 2,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )),
+                                        f
+                                            ? Column(
+                                                children: [
+                                                  InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          b = !b;
+                                                        });
+                                                      },
+                                                      child: !b
+                                                          ? Container(
+                                                              height: 50,
+                                                              decoration: BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color: ColorList
+                                                                          .grey)),
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 15),
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: const Text(
+                                                                '제품 상세 정보',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            )
+                                                          : Column(
+                                                              children: [
+                                                                Container(
+                                                                  height: 50,
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border.all(
+                                                                          color:
+                                                                              ColorList.grey)),
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .only(
+                                                                          left:
+                                                                              15),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child:
+                                                                      const Text(
+                                                                    '제품 상세 정보',
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                                Container(
+                                                                  padding: const EdgeInsets
+                                                                      .only(
+                                                                      left: 15,
+                                                                      top: 15,
+                                                                      bottom:
+                                                                          15),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  width: width,
+                                                                  color: const Color(
+                                                                      0xffF2F2F2),
+                                                                  child: Image
+                                                                      .asset(
+                                                                    'assets/images/51.png',
+                                                                    scale: 2,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            )),
+                                                  InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          c = !c;
+                                                        });
+                                                      },
+                                                      child: !c
+                                                          ? Container(
+                                                              height: 50,
+                                                              decoration: BoxDecoration(
+                                                                  border: Border(
+                                                                      bottom: BorderSide(
+                                                                          color:
+                                                                              ColorList.grey))),
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 15),
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: const Text(
+                                                                '배송 정보',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            )
+                                                          : Column(
+                                                              children: [
+                                                                Container(
+                                                                  height: 50,
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border(
+                                                                          bottom:
+                                                                              BorderSide(color: ColorList.grey))),
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .only(
+                                                                          left:
+                                                                              15),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child:
+                                                                      const Text(
+                                                                    '배송 정보',
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                                Container(
+                                                                  padding: const EdgeInsets
+                                                                      .only(
+                                                                      left: 15,
+                                                                      top: 15,
+                                                                      bottom:
+                                                                          15),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  width: width,
+                                                                  color: const Color(
+                                                                      0xffF2F2F2),
+                                                                  child: Image
+                                                                      .asset(
+                                                                    'assets/images/52.png',
+                                                                    scale: 2,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            )),
+                                                  InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          d = !d;
+                                                        });
+                                                      },
+                                                      child: !d
+                                                          ? Container(
+                                                              height: 50,
+                                                              decoration: BoxDecoration(
+                                                                  border: Border(
+                                                                      bottom: BorderSide(
+                                                                          color:
+                                                                              ColorList.grey))),
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 15),
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: const Text(
+                                                                '환불/교환 정보',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                            )
+                                                          : Column(
+                                                              children: [
+                                                                Container(
+                                                                  height: 50,
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border(
+                                                                          bottom:
+                                                                              BorderSide(color: ColorList.grey))),
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .only(
+                                                                          left:
+                                                                              15),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child:
+                                                                      const Text(
+                                                                    '환불/교환 정보',
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  ),
+                                                                ),
+                                                                Container(
+                                                                  padding: const EdgeInsets
+                                                                      .only(
+                                                                      left: 15,
+                                                                      top: 15,
+                                                                      bottom:
+                                                                          15),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  width: width,
+                                                                  color: const Color(
+                                                                      0xffF2F2F2),
+                                                                  child: Image
+                                                                      .asset(
+                                                                    'assets/images/53.png',
+                                                                    scale: 2,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            )),
+                                                ],
+                                              )
+                                            : Container(),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               right: 20, left: 20),
