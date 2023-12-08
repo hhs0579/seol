@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:seol/utils/color.dart';
 import 'package:seol/widget/star.dart';
+import 'package:seol/widget/util.dart';
 
 class ReviewBottom extends StatefulWidget {
   const ReviewBottom({super.key});
@@ -12,6 +18,7 @@ class ReviewBottom extends StatefulWidget {
 }
 
 class _ReviewBottomState extends State<ReviewBottom> {
+  final List<File?> _images = List.filled(5, null);
   late final _ratingController;
   late double _rating;
 
@@ -270,7 +277,7 @@ class _ReviewBottomState extends State<ReviewBottom> {
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         Container(
                           width: width,
@@ -282,17 +289,205 @@ class _ReviewBottomState extends State<ReviewBottom> {
                           ),
                           child: Row(
                             children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
                               const Text('내용'),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               Container(
                                 padding:
                                     const EdgeInsets.only(left: 10, right: 10),
                                 color: ColorList.grey,
                                 width: 1,
                                 height: height * 0.36,
-                              )
+                              ),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Container(
+                                        height: height * 0.24,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: ColorList.lightgrey,
+                                        ),
+                                        child: TextField(
+                                          maxLines: 10,
+                                          maxLength:
+                                              200, // Added 200 character limit
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: '내용을 200자 이내로 작성해주세요!',
+                                            hintStyle: TextStyle(
+                                              color: ColorList.grey,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, bottom: 10),
+                                      child: Row(
+                                        children: [
+                                          Text('이미지 첨부',
+                                              style: TextStyle(
+                                                  color: ColorList.black,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14)),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            '최대 5장까지 등록이 가능해요! ${_images.where((image) => image != null).length}/5)',
+                                            style: TextStyle(
+                                                color: ColorList.grey,
+                                                fontSize: 10),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(
+                                          children: _images
+                                              .asMap()
+                                              .entries
+                                              .map((entry) {
+                                            int index = entry.key;
+                                            File? image = entry.value;
+
+                                            return Row(
+                                              children: [
+                                                if (index > 0) ...[
+                                                  const SizedBox(
+                                                    width: 8,
+                                                  ),
+                                                ],
+                                                Container(
+                                                  width: 60,
+                                                  height: 60,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                    color: index == 0
+                                                        ? ColorList.lightgrey
+                                                        : const Color.fromARGB(
+                                                            255,
+                                                            245,
+                                                            245,
+                                                            245,
+                                                          ),
+                                                    border: index == 0
+                                                        ? Border.all(
+                                                            color: ColorList
+                                                                .primary)
+                                                        : null,
+                                                  ),
+                                                  clipBehavior: Clip.antiAlias,
+                                                  child: TextButton(
+                                                    onPressed: () =>
+                                                        _onPressedUploadImage(
+                                                            index),
+                                                    child: Stack(
+                                                      children: [
+                                                        if (image == null) ...[
+                                                          Center(
+                                                            child: Icon(
+                                                              Icons
+                                                                  .camera_alt_rounded,
+                                                              color: index == 0
+                                                                  ? ColorList
+                                                                      .primary
+                                                                  : const Color
+                                                                      .fromARGB(
+                                                                      255,
+                                                                      212,
+                                                                      212,
+                                                                      212,
+                                                                    ),
+                                                            ),
+                                                          ),
+                                                        ] else ...[
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              image:
+                                                                  DecorationImage(
+                                                                image:
+                                                                    FileImage(
+                                                                        image),
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                        if (index == 0) ...[
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                              left: 22,
+                                                            ),
+                                                            child: Container(
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          5),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          5),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                              color: ColorList.black,
+                              alignment: Alignment.center,
+                              height: 40,
+                              width: width,
+                              child: const Row(
+                                children: [
+                                  Icon(
+                                    Icons.edit_square,
+                                    color: Colors.white,
+                                  )
+                                ],
+                              )),
+                        )
                       ])),
                   Container(
                     color: Colors.orange,
@@ -305,5 +500,17 @@ class _ReviewBottomState extends State<ReviewBottom> {
             ),
           ],
         ));
+  }
+
+  Future<void> _onPressedUploadImage(int index) async {
+    XFile? xFile = await Utils.pickImageFromGallery();
+
+    if (xFile != null) {
+      setState(() {
+        _images[index] = File(xFile.path);
+      });
+    } else {
+      Fluttertoast.showToast(msg: '해당 파일을 불러오는 중 오류가 발생하였습니다.');
+    }
   }
 }

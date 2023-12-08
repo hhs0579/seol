@@ -38,6 +38,9 @@ dependencies:
   provider:
   flutter_rating_stars:
   flutter_rating_bar:
+  flutter_screenutil: ^5.9.0
+  fluttertoast: ^8.2.4
+  image_picker:
 dev_dependencies:
   flutter_test:
     sdk: flutter
