@@ -4,6 +4,7 @@ class ColorList {
   static Color primary = const Color(0xff7CCAF1);
   static Color blue = const Color(0xff59A8FF);
   static Color grey = const Color(0xffC3C3C3);
+  static Color lightgrey = const Color(0xffEEEEEE);
   static Color deepgrey = const Color(0xff383838);
   static Color white = const Color(0xfff7f8f8);
   static Color brown = const Color(0xff854F36);
