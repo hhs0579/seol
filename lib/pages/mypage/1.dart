@@ -4,6 +4,7 @@ import 'package:seol/pages/mypage/2.dart';
 import 'package:seol/pages/mypage/3.dart';
 import 'package:seol/pages/mypage/4.dart';
 import 'package:seol/pages/mypage/myclothes/1.dart';
+import 'package:seol/pages/mypage/myqna/1.dart';
 import 'package:seol/pages/mypage/myreview/1.dart';
 import 'package:seol/pages/mypage/mysize/1.dart';
 import 'package:seol/utils/color.dart';
@@ -267,9 +268,17 @@ class MyPage1 extends StatelessWidget {
                             scale: 2.2,
                           ),
                         ),
-                        Image.asset(
-                          'assets/images/100.png',
-                          scale: 2.2,
+                        GestureDetector(
+                          onTap: (){ Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Myqna()));
+
+                          },
+                          child: Image.asset(
+                            'assets/images/100.png',
+                            scale: 2.2,
+                          ),
                         )
                       ],
                     ),
