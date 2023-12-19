@@ -36,7 +36,12 @@ class MyOder extends StatelessWidget {
                   onTap: () {
                     ordercancel(context);
                   },
-                  child: Image.asset('assets/images/160.png'))
+                  child: Image.asset('assets/images/160.png')),
+              InkWell(
+                  onTap: () {
+                    orderchange(context);
+                  },
+                  child: Image.asset('assets/images/162.png'))
             ],
           )),
     );

@@ -3,8 +3,7 @@ import 'package:seol/bottom.dart';
 import 'package:seol/pages/search/3.dart';
 
 void myAlert(BuildContext context) {
-  bool a=false;
-  
+  bool a = false;
 }
 
 void myAlert2(BuildContext context) {
@@ -12,6 +11,9 @@ void myAlert2(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       var width = MediaQuery.of(context).size.width;
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.of(context).pop();
+      });
       return AlertDialog(
         content: InkWell(
           onTap: () {
@@ -29,6 +31,47 @@ void myAlert2(BuildContext context) {
             'assets/images/81.png',
             fit: BoxFit.cover,
             width: width * 0.8, // 전체 화면 너비의 80%
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10), // 둥근 모서리 설정
+        ),
+        contentPadding: EdgeInsets.zero, // 내부 여백 제거
+        insetPadding: const EdgeInsets.all(10), // AlertDialog 외부 여백 조정
+        // AlertDialog의 다른 속성들...
+      );
+    },
+  );
+}
+
+void ordercancelDone(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      var width = MediaQuery.of(context).size.width;
+      var height = MediaQuery.of(context).size.height;
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.of(context).pop();
+      });
+      return AlertDialog(
+        content: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          splashColor: Colors.transparent, // 물결 효과를 투명하게
+          highlightColor: Colors.transparent,
+          child: Container(
+            width: width * 0.8, // 전체 화면 너비의 80%
+            height: height * 0.3,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+
+            child: Image.asset(
+              'assets/images/161.png',
+              scale: 1.2,
+            ),
           ),
         ),
         shape: RoundedRectangleBorder(
