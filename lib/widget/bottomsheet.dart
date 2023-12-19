@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:seol/bottom.dart';
 import 'package:seol/utils/color.dart';
 
 void showBottomSheets(BuildContext context) {
+  bool a = false;
+  bool b = false;
   showModalBottomSheet(
     isScrollControlled: true,
     shape: const BeveledRectangleBorder(
@@ -9,13 +12,10 @@ void showBottomSheets(BuildContext context) {
             topLeft: Radius.circular(20), topRight: Radius.circular(20))),
     context: context,
     builder: (context) {
-      return InkWell(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        splashColor: Colors.transparent, // 물결 효과를 투명하게
-        highlightColor: Colors.transparent,
-        child: Container(
+      return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+        return Container(
+            height: MediaQuery.of(context).size.height * 0.55,
             alignment: Alignment.bottomCenter,
             padding: const EdgeInsets.only(top: 30),
             decoration: const BoxDecoration(
@@ -23,12 +23,54 @@ void showBottomSheets(BuildContext context) {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20))),
-            height: MediaQuery.of(context).size.height * 0.45,
-            child: Image.asset(
-              'assets/images/33.png',
-              scale: 2.5,
-            )),
-      );
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                Image.asset('assets/images/154.png'),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          a = !a;
+                          if (b == true) {
+                            b = false;
+                          }
+                        });
+                      },
+                      child: a
+                          ? Image.asset('assets/images/156.png')
+                          : Image.asset('assets/images/155.png'),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          b = !b;
+                          if (a == true) {
+                            a = false;
+                          }
+                        });
+                      },
+                      child: b
+                          ? Image.asset('assets/images/158.png')
+                          : Image.asset('assets/images/157.png'),
+                    )
+                  ],
+                ),
+                const Spacer(),
+                Image.asset('assets/images/159.png')
+              ],
+            ));
+      });
     },
   );
 }
@@ -162,9 +204,12 @@ void BuyBottom(BuildContext context) {
                           d
                               ? Image.asset(
                                   'assets/images/70.png',
-                                  scale: 2,
+                                  scale: 1,
                                 )
                               : Container(),
+                          const SizedBox(
+                            height: 20,
+                          )
                         ],
                       ),
                     ),
@@ -209,6 +254,7 @@ void BuyBottom(BuildContext context) {
                         InkWell(
                           onTap: () {
                             Navigator.pop(context);
+
                             showCustomDialog(context);
                           },
                           child: Row(
@@ -264,24 +310,23 @@ void showCustomDialog(BuildContext context) {
   showModalBottomSheet(
     context: context,
     backgroundColor: Colors.transparent, // 배경 투명 설정
-    builder: (BuildContext bc) {
+    builder: (BuildContext context) {
       return Container(
-          margin: const EdgeInsets.symmetric(
-              horizontal: 40, vertical: 40), // 모달의 양 옆과 하단에 마진 추가
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30), // 상단 모서리 둥글게
-            boxShadow: const [
-              // 그림자 추가
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 10.0,
-                spreadRadius: 0.0,
-                offset: Offset(0.0, 0.0),
-              ),
-            ],
-          ),
-          child: Image.asset('assets/images/71.png'));
+        margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 120),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30), // 상단 모서리 둥글게
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10.0,
+              spreadRadius: 0.0,
+              offset: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        child: Image.asset('assets/images/71.png'),
+      );
     },
   );
 }
@@ -292,22 +337,21 @@ void showCustomDialog2(BuildContext context) {
     backgroundColor: Colors.transparent, // 배경 투명 설정
     builder: (BuildContext bc) {
       return Container(
-          margin: const EdgeInsets.symmetric(
-              horizontal: 40, vertical: 40), // 모달의 양 옆과 하단에 마진 추가
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30), // 상단 모서리 둥글게
-            boxShadow: const [
-              // 그림자 추가
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 10.0,
-                spreadRadius: 0.0,
-                offset: Offset(0.0, 0.0),
-              ),
-            ],
-          ),
-          child: Image.asset('assets/images/81.png'));
+        margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 120),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30), // 상단 모서리 둥글게
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(66, 28, 23, 23),
+              blurRadius: 10.0,
+              spreadRadius: 0.0,
+              offset: Offset(0.0, 0.0),
+            ),
+          ],
+        ),
+        child: Image.asset('assets/images/71.png'),
+      );
     },
   );
 }
@@ -334,6 +378,169 @@ void showCustomDialog3(BuildContext context) {
             ],
           ),
           child: Image.asset('assets/images/108.png'));
+    },
+  );
+}
+
+void ordercancel(BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  double width = MediaQuery.of(context).size.width;
+  bool a = false;
+  bool b = false;
+  showModalBottomSheet(
+    isScrollControlled: true,
+    shape: const BeveledRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+    context: context,
+    builder: (context) {
+      return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+        return Container(
+            height: MediaQuery.of(context).size.height * 0.80,
+            alignment: Alignment.bottomCenter,
+            padding: const EdgeInsets.only(top: 20),
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(),
+                      Container(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: const Text(
+                          '   주문 취소',
+                          style: TextStyle(
+                              color: Color(0xff333333),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18),
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.close,
+                            weight: 100,
+                          ))
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  child: Image.asset(
+                    'assets/images/146.png',
+                    scale: 1.1,
+                  ),
+                ),
+                const Text(
+                  '내 주문 취소 이유는...?',
+                  style: TextStyle(fontFamily: 'jiji', fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      a = !a;
+                    });
+                  },
+                  child: !a
+                      ? Container(
+                          alignment: Alignment.center,
+                          height: height * 0.08,
+                          width: width * 0.85,
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: ColorList.grey, width: 1),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            '내 주문 취소 사유 선택하기',
+                            style: TextStyle(
+                                fontSize: 16, color: ColorList.orange),
+                          ),
+                        )
+                      : Container(
+                          alignment: Alignment.center,
+                          height: height * 0.265,
+                          width: width * 0.85,
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: ColorList.grey, width: 1),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                width: width * 0.85,
+                                height: height * 0.08,
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: ColorList.grey, width: 1)),
+                                ),
+                                child: Text(
+                                  '내 주문 취소 사유',
+                                  style: TextStyle(
+                                      fontSize: 16, color: ColorList.orange),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                width: width * 0.85,
+                                height: height * 0.06,
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: ColorList.grey, width: 1)),
+                                ),
+                                child: const Text(
+                                  '단순 변심이에요',
+                                  style: TextStyle(
+                                      color: Color(0xff909090), fontSize: 14),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                width: width * 0.85,
+                                height: height * 0.06,
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: ColorList.grey, width: 1)),
+                                ),
+                                child: const Text(
+                                  '옵션(사이즈, 색상) 잘못 선택했어요',
+                                  style: TextStyle(
+                                      color: Color(0xff909090), fontSize: 14),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                width: width * 0.85,
+                                height: height * 0.06,
+                                decoration: const BoxDecoration(),
+                                child: const Text(
+                                  '수량을 잘못 선택했어요',
+                                  style: TextStyle(
+                                      color: Color(0xff909090), fontSize: 14),
+                                ),
+                              )
+                            ],
+                          )),
+                )
+              ],
+            ));
+      });
     },
   );
 }

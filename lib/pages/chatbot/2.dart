@@ -21,6 +21,7 @@ class _chatbot2State extends State<chatbot2> {
   int imageIndex = 0;
   final List<String> imagePaths = [
     'assets/images/21.png',
+
     'assets/images/22.png',
     // 여기에 더 많은 이미지 경로를 추가할 수 있습니다.
   ];
@@ -29,23 +30,42 @@ class _chatbot2State extends State<chatbot2> {
   bool c = false;
   final PageController controller = PageController();
   @override
+  @override
   void initState() {
     super.initState();
     controller.addListener(() {
       setState(() {}); // 페이지 변경 시 UI 업데이트
     });
     c = false;
-    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      if (imageIndex < imagePaths.length) {
-        setState(() {
-          images.add(Image.asset(
-            imagePaths[imageIndex],
-            scale: 1.5,
-          ));
-          imageIndex++;
-        });
+
+    timer = Timer.periodic(const Duration(milliseconds: 1200), (Timer t) {
+      if (imageIndex < imagePaths.length * 2) {
+        if (imageIndex.isEven) {
+          setState(() {
+            images.add(Container(
+                padding: const EdgeInsets.only(top: 10),
+                child: Image.asset('assets/images/152.png', scale: 1.3)));
+          });
+          // 'assets/images/152.png'를 0.2초 동안 보여준 후 제거
+          Future.delayed(const Duration(milliseconds: 200), () {
+            setState(() {
+              images.removeLast();
+            });
+          });
+        } else {
+          setState(() {
+            images.add(Container(
+              padding: const EdgeInsets.only(top: 10),
+              child: Image.asset(
+                imagePaths[imageIndex ~/ 2],
+                scale: 1.3,
+              ),
+            ));
+          });
+        }
+        imageIndex++;
       } else {
-        // 이미지가 모두 추가된 후
+        // 모든 이미지가 추가된 후
         timer?.cancel(); // 타이머 정리
         showBottomSheet(context, updateCState); // 바텀 시트 표시
       }
@@ -105,6 +125,18 @@ class _chatbot2State extends State<chatbot2> {
                           width: width * 0.4,
                           height: 60,
                           decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey
+                                      .withOpacity(0.5), // Shadow color
+                                  spreadRadius:
+                                      5, // Increase spread radius for external shadow
+                                  blurRadius:
+                                      10, // Adjust blur radius for desired softness
+                                  offset: const Offset(
+                                      0, 1), // Adjust shadow position
+                                ),
+                              ],
                               color: a ? ColorList.black : Colors.white,
                               border: Border.all(
                                   width: 1.5,
@@ -114,7 +146,7 @@ class _chatbot2State extends State<chatbot2> {
                             '보유옷을 등록한 경우',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: a ? Colors.white : Colors.grey),
+                                color: a ? Colors.white : Colors.black),
                           ),
                         ),
                       ),
@@ -123,7 +155,7 @@ class _chatbot2State extends State<chatbot2> {
                         child: const Text(
                           'VS',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                              fontWeight: FontWeight.bold, fontSize: 13),
                         ),
                       ),
                       InkWell(
@@ -148,7 +180,7 @@ class _chatbot2State extends State<chatbot2> {
                             '보유옷을\n등록하지 않은 경우',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: b ? Colors.white : Colors.grey),
+                                color: b ? Colors.white : Colors.black),
                           ),
                         ),
                       ),
@@ -274,7 +306,10 @@ class _chatbot2State extends State<chatbot2> {
             Image.asset(
               'assets/images/18.png',
               scale: 2,
-            )
+            ),
+            const SizedBox(
+              width: 15,
+            ),
           ],
         ),
         body: Container(
@@ -291,7 +326,7 @@ class _chatbot2State extends State<chatbot2> {
                   ),
                   Image.asset(
                     'assets/images/20.png',
-                    scale: 1.5,
+                    scale: 1.3,
                   )
                 ],
               ),

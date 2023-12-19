@@ -63,7 +63,7 @@ class _reportState extends State<report> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 15),
+                                fontSize: 13),
                           ),
                           Icon(
                             Icons.keyboard_arrow_down,
@@ -78,7 +78,7 @@ class _reportState extends State<report> {
                       Text(
                         '키 ${model.height}cm',
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 12),
+                            const TextStyle(color: Colors.white, fontSize: 10),
                       ),
                       const SizedBox(
                         width: 20,
@@ -86,7 +86,7 @@ class _reportState extends State<report> {
                       Text(
                         '몸무게 ${model.weight}kg',
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 12),
+                            const TextStyle(color: Colors.white, fontSize: 10),
                       ),
                       const SizedBox(
                         width: 20,
@@ -94,7 +94,7 @@ class _reportState extends State<report> {
                       Text(
                         '발 ${model.foot}mm',
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 12),
+                            const TextStyle(color: Colors.white, fontSize: 10),
                       ),
                     ],
                   )

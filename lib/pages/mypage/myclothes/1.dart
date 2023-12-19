@@ -183,7 +183,7 @@ class _myclothsState extends State<mycloths> {
       height: 60,
       decoration: BoxDecoration(
           color: ColorList.black,
-          border: const Border(bottom: BorderSide(color: Colors.black))),
+          border: const Border(bottom: BorderSide(color: Colors.white))),
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Row(

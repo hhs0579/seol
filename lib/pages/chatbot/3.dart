@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:seol/bottom.dart';
+import 'package:seol/pages/search/3.dart';
+import 'package:seol/utils/color.dart';
 
 import '../../widget/dialog.dart';
 
@@ -12,6 +15,7 @@ class chatbot3 extends StatefulWidget {
 }
 
 class _chatbot3State extends State<chatbot3> {
+  bool a = false;
   List<Widget> images = [];
   Timer? timer;
   int imageIndex = 0;
@@ -24,20 +28,167 @@ class _chatbot3State extends State<chatbot3> {
   void initState() {
     super.initState();
 
-    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      if (imageIndex < imagePaths.length) {
-        setState(() {
-          images.add(Image.asset(
-            imagePaths[imageIndex],
-            scale: 2.5,
-          ));
-          imageIndex++;
-        });
+    timer = Timer.periodic(const Duration(milliseconds: 1200), (Timer t) {
+      if (imageIndex < imagePaths.length * 2) {
+        if (imageIndex.isEven) {
+          setState(() {
+            images.add(Container(
+                padding: const EdgeInsets.only(top: 10),
+                child: Image.asset('assets/images/152.png', scale: 1.3)));
+          });
+          // 'assets/images/152.png'를 0.2초 동안 보여준 후 제거
+          Future.delayed(const Duration(milliseconds: 200), () {
+            setState(() {
+              images.removeLast();
+            });
+          });
+        } else {
+          Widget imageWidget = Image.asset(
+            imagePaths[imageIndex ~/ 2],
+            scale: 1.3,
+          );
+
+          // 'assets/images/31.png'일 경우에만 앞에 SizedBox 추가
+          if (imagePaths[imageIndex ~/ 2] == 'assets/images/31.png') {
+            imageWidget = Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(width: 50), // 여기에서 추가적인 공간을 제공
+                imageWidget,
+              ],
+            );
+          } else {
+            imageWidget = Row(
+              children: [imageWidget],
+            );
+          }
+
+          setState(() {
+            images.add(Container(
+              padding: const EdgeInsets.only(top: 10),
+              child: imageWidget,
+            ));
+          });
+        }
+        imageIndex++;
       } else {
-        // 이미지가 모두 추가된 후
+        // 모든 이미지가 추가된 후
         timer?.cancel(); // 타이머 정리
       }
     });
+  }
+
+  void toggleBookmark() {
+    setState(() {
+      a = !a;
+    });
+  }
+
+  void Customalert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        var width = MediaQuery.of(context).size.width;
+        var height = MediaQuery.of(context).size.height;
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              content: Container(
+                height: height * 0.68,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white),
+                child: Column(
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Bottom(
+                                  showBottomSheet:
+                                      true), // 여기에 새로운 페이지 위젯을 넣으세요.
+                            ),
+                          );
+                        },
+                        splashColor: Colors.transparent, // 물결 효과를 투명하게
+                        highlightColor: Colors.transparent,
+                        child: Container(
+                            padding: const EdgeInsets.all(10),
+                            alignment: Alignment.topRight,
+                            child: const Icon(Icons.close))),
+                    SizedBox(
+                      height: height * 0.55,
+                      child: Image.asset(
+                        'assets/images/139.png',
+                        scale: 2,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                a = !a;
+                              });
+                            },
+                            child: SizedBox(
+                              width: 20,
+                              height: 40,
+                              child: Icon(
+                                  a
+                                      ? Icons.bookmark
+                                      : Icons.bookmark_border_outlined,
+                                  size: 25,
+                                  color: a ? ColorList.primary : Colors.black),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Search3()),
+                              );
+                            },
+                            child: const Row(
+                              children: [
+                                Text(
+                                  '상품 보러가기',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 20,
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10), // 둥근 모서리 설정
+              ),
+              contentPadding: EdgeInsets.zero, // 내부 여백 제거
+              insetPadding: const EdgeInsets.all(10), // AlertDialog 외부 여백 조정
+              // AlertDialog의 다른 속성들...
+            );
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -63,9 +214,12 @@ class _chatbot3State extends State<chatbot3> {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         actions: [
-          Image.asset(
-            'assets/images/18.png',
-            scale: 2,
+          Container(
+            padding: const EdgeInsets.only(right: 15),
+            child: Image.asset(
+              'assets/images/18.png',
+              scale: 2,
+            ),
           )
         ],
       ),
@@ -80,7 +234,7 @@ class _chatbot3State extends State<chatbot3> {
                 alignment: Alignment.centerLeft,
                 child: Image.asset(
                   'assets/images/29.png',
-                  scale: 2.5,
+                  scale: 1.3,
                 ),
               ),
               const SizedBox(
@@ -88,7 +242,7 @@ class _chatbot3State extends State<chatbot3> {
               ),
               InkWell(
                 onTap: () {
-                  myAlert(context);
+                  Customalert();
                 },
                 splashColor: Colors.transparent, // 물결 효과를 투명하게
                 highlightColor: Colors.transparent,

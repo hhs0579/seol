@@ -21,7 +21,8 @@ class _ProductPageState extends State<ProductPage> {
     "원피스/세트",
     "아우터",
     "신발",
-    "악세사리"
+    "악세사리",
+    "가방"
   ];
   final List<String> categories2 = [
     '반팔티',
@@ -66,6 +67,15 @@ class _ProductPageState extends State<ProductPage> {
     '머플러',
     '벨트',
   ];
+  final List<String> categories8 = [
+    '백팩',
+    '크로스백/메신저백',
+    '클러치/파우치백',
+    '숄더/토트백',
+    '에코백',
+    '브리프케이스',
+    '웨이스트백',
+  ];
   List ListItem = [
     '최신순',
     '인기순',
@@ -79,24 +89,42 @@ class _ProductPageState extends State<ProductPage> {
   void _handleCategorySelection(String category, bool isSelected) {
     setState(() {
       if (category == "전체") {
+        selectedCategories.clear();
+        selectedCategories.add(category);
+      } else {
         if (isSelected) {
-          selectedCategories.clear();
+          // '전체' 카테고리 해제
+          selectedCategories.remove("전체");
+
+          // 대분류 선택 시, 다른 대분류 해제
+          if (isMajorCategory(category)) {
+            selectedCategories.removeWhere((cat) => isMajorCategory(cat));
+          }
           selectedCategories.add(category);
         } else {
           selectedCategories.remove(category);
         }
-      } else {
-        if (isSelected) {
-          selectedCategories.remove("전체");
-          selectedCategories.add(category);
-        } else {
-          selectedCategories.remove(category);
-          if (selectedCategories.isEmpty) {
-            selectedCategories.add("전체");
-          }
+
+        // 선택된 대분류 카테고리가 없으면 '전체'를 자동으로 추가
+        if (selectedCategories.isEmpty ||
+            selectedCategories.every((cat) => !isMajorCategory(cat))) {
+          selectedCategories.add("전체");
         }
       }
     });
+  }
+
+  bool isMajorCategory(String category) {
+    List<String> majorCategories = [
+      "상의",
+      "하의",
+      "원피스/세트",
+      "아우터",
+      "신발",
+      "악세사리",
+      "가방"
+    ];
+    return majorCategories.contains(category);
   }
 
   void _openDrawer() {
@@ -111,7 +139,10 @@ class _ProductPageState extends State<ProductPage> {
         SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset('assets/images/34.png'),
+              Image.asset(
+                'assets/images/34.png',
+                scale: 1.2,
+              ),
               // ... 기타 위젯들
               Container(
                   decoration: BoxDecoration(
@@ -125,7 +156,7 @@ class _ProductPageState extends State<ProductPage> {
                     ],
                   ),
                   padding: const EdgeInsets.only(
-                      left: 20, right: 15, top: 15, bottom: 10),
+                      left: 15, right: 15, top: 15, bottom: 10),
                   child: InkWell(
                       onTap: () {
                         Navigator.push(
@@ -145,7 +176,7 @@ class _ProductPageState extends State<ProductPage> {
                 padding: const EdgeInsets.only(
                   left: 2,
                 ),
-                height: 60,
+                height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
@@ -155,7 +186,7 @@ class _ProductPageState extends State<ProductPage> {
 
                     return Padding(
                       padding: const EdgeInsets.only(
-                          left: 3, right: 3, top: 10, bottom: 10),
+                          left: 3, right: 3, top: 5, bottom: 10),
                       child: TextButton(
                         onPressed: () {
                           _handleCategorySelection(category, !isSelected);
@@ -190,7 +221,7 @@ class _ProductPageState extends State<ProductPage> {
                   padding: const EdgeInsets.only(
                     left: 2,
                   ),
-                  height: 60,
+                  height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories2.length,
@@ -200,7 +231,7 @@ class _ProductPageState extends State<ProductPage> {
 
                       return Padding(
                         padding: const EdgeInsets.only(
-                            left: 3, right: 3, top: 10, bottom: 10),
+                            left: 3, right: 3, top: 5, bottom: 10),
                         child: TextButton(
                           onPressed: () {
                             _handleCategorySelection(category, !isSelected);
@@ -215,7 +246,7 @@ class _ProductPageState extends State<ProductPage> {
                                 side: BorderSide(
                                   color: isSelected
                                       ? ColorList.brown
-                                      : Colors.grey,
+                                      : Colors.brown,
                                 ),
                               ),
                             ),
@@ -223,7 +254,8 @@ class _ProductPageState extends State<ProductPage> {
                           child: Text(
                             category,
                             style: TextStyle(
-                                color: isSelected ? Colors.white : Colors.grey),
+                                color:
+                                    isSelected ? Colors.white : Colors.brown),
                           ),
                         ),
                       );
@@ -236,7 +268,7 @@ class _ProductPageState extends State<ProductPage> {
                   padding: const EdgeInsets.only(
                     left: 2,
                   ),
-                  height: 60,
+                  height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories3.length,
@@ -246,7 +278,7 @@ class _ProductPageState extends State<ProductPage> {
 
                       return Padding(
                         padding: const EdgeInsets.only(
-                            left: 3, right: 3, top: 10, bottom: 10),
+                            left: 3, right: 3, top: 5, bottom: 10),
                         child: TextButton(
                           onPressed: () {
                             _handleCategorySelection(category, !isSelected);
@@ -261,7 +293,7 @@ class _ProductPageState extends State<ProductPage> {
                                 side: BorderSide(
                                   color: isSelected
                                       ? ColorList.brown
-                                      : Colors.grey,
+                                      : Colors.brown,
                                 ),
                               ),
                             ),
@@ -269,7 +301,8 @@ class _ProductPageState extends State<ProductPage> {
                           child: Text(
                             category,
                             style: TextStyle(
-                                color: isSelected ? Colors.white : Colors.grey),
+                                color:
+                                    isSelected ? Colors.white : Colors.brown),
                           ),
                         ),
                       );
@@ -282,7 +315,7 @@ class _ProductPageState extends State<ProductPage> {
                   padding: const EdgeInsets.only(
                     left: 2,
                   ),
-                  height: 60,
+                  height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories4.length,
@@ -292,7 +325,7 @@ class _ProductPageState extends State<ProductPage> {
 
                       return Padding(
                         padding: const EdgeInsets.only(
-                            left: 3, right: 3, top: 10, bottom: 10),
+                            left: 3, right: 3, top: 5, bottom: 10),
                         child: TextButton(
                           onPressed: () {
                             _handleCategorySelection(category, !isSelected);
@@ -307,7 +340,7 @@ class _ProductPageState extends State<ProductPage> {
                                 side: BorderSide(
                                   color: isSelected
                                       ? ColorList.brown
-                                      : Colors.grey,
+                                      : Colors.brown,
                                 ),
                               ),
                             ),
@@ -315,7 +348,8 @@ class _ProductPageState extends State<ProductPage> {
                           child: Text(
                             category,
                             style: TextStyle(
-                                color: isSelected ? Colors.white : Colors.grey),
+                                color:
+                                    isSelected ? Colors.white : Colors.brown),
                           ),
                         ),
                       );
@@ -328,7 +362,7 @@ class _ProductPageState extends State<ProductPage> {
                   padding: const EdgeInsets.only(
                     left: 2,
                   ),
-                  height: 60,
+                  height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories5.length,
@@ -338,7 +372,7 @@ class _ProductPageState extends State<ProductPage> {
 
                       return Padding(
                         padding: const EdgeInsets.only(
-                            left: 3, right: 3, top: 10, bottom: 10),
+                            left: 3, right: 3, top: 5, bottom: 10),
                         child: TextButton(
                           onPressed: () {
                             _handleCategorySelection(category, !isSelected);
@@ -353,7 +387,7 @@ class _ProductPageState extends State<ProductPage> {
                                 side: BorderSide(
                                   color: isSelected
                                       ? ColorList.brown
-                                      : Colors.grey,
+                                      : Colors.brown,
                                 ),
                               ),
                             ),
@@ -361,7 +395,8 @@ class _ProductPageState extends State<ProductPage> {
                           child: Text(
                             category,
                             style: TextStyle(
-                                color: isSelected ? Colors.white : Colors.grey),
+                                color:
+                                    isSelected ? Colors.white : Colors.brown),
                           ),
                         ),
                       );
@@ -374,7 +409,7 @@ class _ProductPageState extends State<ProductPage> {
                   padding: const EdgeInsets.only(
                     left: 2,
                   ),
-                  height: 60,
+                  height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories6.length,
@@ -384,7 +419,7 @@ class _ProductPageState extends State<ProductPage> {
 
                       return Padding(
                         padding: const EdgeInsets.only(
-                            left: 3, right: 3, top: 10, bottom: 10),
+                            left: 3, right: 3, top: 5, bottom: 10),
                         child: TextButton(
                           onPressed: () {
                             _handleCategorySelection(category, !isSelected);
@@ -399,7 +434,7 @@ class _ProductPageState extends State<ProductPage> {
                                 side: BorderSide(
                                   color: isSelected
                                       ? ColorList.brown
-                                      : Colors.grey,
+                                      : Colors.brown,
                                 ),
                               ),
                             ),
@@ -407,7 +442,8 @@ class _ProductPageState extends State<ProductPage> {
                           child: Text(
                             category,
                             style: TextStyle(
-                                color: isSelected ? Colors.white : Colors.grey),
+                                color:
+                                    isSelected ? Colors.white : Colors.brown),
                           ),
                         ),
                       );
@@ -420,7 +456,7 @@ class _ProductPageState extends State<ProductPage> {
                   padding: const EdgeInsets.only(
                     left: 2,
                   ),
-                  height: 60,
+                  height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: categories7.length,
@@ -430,7 +466,7 @@ class _ProductPageState extends State<ProductPage> {
 
                       return Padding(
                         padding: const EdgeInsets.only(
-                            left: 3, right: 3, top: 10, bottom: 10),
+                            left: 3, right: 3, top: 5, bottom: 10),
                         child: TextButton(
                           onPressed: () {
                             _handleCategorySelection(category, !isSelected);
@@ -445,7 +481,7 @@ class _ProductPageState extends State<ProductPage> {
                                 side: BorderSide(
                                   color: isSelected
                                       ? ColorList.brown
-                                      : Colors.grey,
+                                      : Colors.brown,
                                 ),
                               ),
                             ),
@@ -453,7 +489,55 @@ class _ProductPageState extends State<ProductPage> {
                           child: Text(
                             category,
                             style: TextStyle(
-                                color: isSelected ? Colors.white : Colors.grey),
+                                color:
+                                    isSelected ? Colors.white : Colors.brown),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              if (selectedCategories.contains("가방"))
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(
+                    left: 2,
+                  ),
+                  height: 50,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories8.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String category = categories8[index];
+                      bool isSelected = selectedCategories.contains(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 3, right: 3, top: 5, bottom: 10),
+                        child: TextButton(
+                          onPressed: () {
+                            _handleCategorySelection(category, !isSelected);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              isSelected ? ColorList.brown : Colors.white,
+                            ),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(
+                                  color: isSelected
+                                      ? ColorList.brown
+                                      : Colors.brown,
+                                ),
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            category,
+                            style: TextStyle(
+                                color:
+                                    isSelected ? Colors.white : Colors.brown),
                           ),
                         ),
                       );
@@ -471,7 +555,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ],
                 ),
-                padding: const EdgeInsets.only(left: 15, bottom: 15),
+                padding: const EdgeInsets.only(left: 15, bottom: 15, top: 15),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -495,39 +579,46 @@ class _ProductPageState extends State<ProductPage> {
                         decoration: BoxDecoration(
                             border: Border.all(color: ColorList.grey),
                             borderRadius: BorderRadius.circular(10)),
-                        child: DropdownButton(
-                          underline: const SizedBox(),
-                          hint: const Text(
-                            '최신순',
-                            style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
-                          ),
-                          elevation: 0,
-                          value: valueSel,
-                          onChanged: (value) {
-                            setState(() {
-                              valueSel = value;
-                            });
-                          },
-                          items: ListItem.map((valueItem) {
-                            return DropdownMenuItem(
-                              value: valueItem,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    valueItem,
-                                    style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
+                        child: IntrinsicWidth(
+                          child: DropdownButton(
+                            isExpanded: false,
+                            itemHeight: null,
+                            underline: const SizedBox(),
+                            hint: const Text(
+                              '최신순',
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            elevation: 1,
+                            value: valueSel,
+                            onChanged: (value) {
+                              setState(() {
+                                valueSel = value;
+                              });
+                            },
+                            items: ListItem.map((valueItem) {
+                              return DropdownMenuItem(
+                                value: valueItem,
+                                child: Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        valueItem,
+                                        style: const TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          // 드롭다운 메뉴의 모서리에 라운드 모양 추가
-                          dropdownColor: Colors.white, // 메뉴의 배경색 설정
-                          borderRadius: BorderRadius.circular(8), // 모서리 라운드 설정
+                                ),
+                              );
+                            }).toList(),
+                            // 드롭다운 메뉴의 모서리에 라운드 모양 추가
+                            dropdownColor: Colors.white, // 메뉴의 배경색 설정
+                            borderRadius:
+                                BorderRadius.circular(8), // 모서리 라운드 설정
+                          ),
                         ),
                       ),
                       const SizedBox(

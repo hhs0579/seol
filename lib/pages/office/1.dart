@@ -32,37 +32,56 @@ class _office1State extends State<office1> {
       body: SizedBox(
         width: width,
         height: height,
-        child:
-            Column(
-              children: [
-                Image.asset('assets/images/84.png'),
-                Container(
-                  color: const Color(0xff045633),
-                  width: width,
-                  height: 50,
-                  child: Row(
-                    children: [
-                      _buildTopButton("리포트", 0),
-                      _buildTopButton("단골가게", 1),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: PageView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    controller: _pageController,
-                    onPageChanged: (int page) {
-                      setState(() {
-                        _currentPage = page;
-                      });
-                    },
-                    children: const [report(), likemarket()],
-                  ),
-                ),
-              ],
+        child: Column(
+          children: [
+            Image.asset('assets/images/84.png'),
+            Container(
+                color: const Color(0xff045633),
+                width: width,
+                height: 45,
+                child: _buildStackedTopButtons()),
+            Expanded(
+              child: PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _pageController,
+                onPageChanged: (int page) {
+                  setState(() {
+                    _currentPage = page;
+                  });
+                },
+                children: const [report(), likemarket()],
+              ),
             ),
-          
-        
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStackedTopButtons() {
+    double width = MediaQuery.of(context).size.width;
+    double overlap = width * 0.12; // 버튼이 겹치는 정도를 조절하는 값
+
+    List<Widget> buttons = [
+      Positioned(
+        left: 0,
+        child: _buildTopButton("리포트", 0),
+      ),
+      Positioned(
+        left: width * 0.6 - overlap, // 첫 번째 버튼과 겹치게 위치 조정
+        child: _buildTopButton("단골가게", 1),
+      ),
+    ];
+
+    // 선택된 버튼을 마지막에 렌더링하여 앞으로 오도록 함
+    Widget selectedButton = buttons.removeAt(_currentPage);
+    buttons.add(selectedButton);
+
+    return SizedBox(
+      width: width,
+      height: 55,
+      child: Stack(
+        children: buttons,
       ),
     );
   }
@@ -96,7 +115,7 @@ class _office1State extends State<office1> {
       },
       child: Container(
         alignment: alignment,
-        width: width * 0.5,
+        width: width * 0.53,
         height: 55,
         decoration: BoxDecoration(
           color:

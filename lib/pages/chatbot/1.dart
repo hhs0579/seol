@@ -94,7 +94,7 @@ class _chatbot1State extends State<chatbot1> {
               // 상단 버튼들
               Container(
                 width: width * 0.5,
-                height: 55,
+                height: 50,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30)),
@@ -129,16 +129,18 @@ class _chatbot1State extends State<chatbot1> {
                       splashColor: Colors.transparent, // 물결 효과를 투명하게
                       highlightColor: Colors.transparent,
                       child: Container(
+                        alignment: Alignment.centerRight,
                         child: Image.asset(
                           'assets/images/16.png',
-                          scale: 2,
+                          scale: 1.1,
                         ),
                       ),
                     ),
                     Container(
+                      alignment: Alignment.centerLeft,
                       child: Image.asset(
                         'assets/images/17.png',
-                        scale: 2,
+                        scale: 1.1,
                       ),
                     ),
                   ],
@@ -169,13 +171,15 @@ class _chatbot1State extends State<chatbot1> {
         width: width * 0.25,
         height: 55,
         decoration: BoxDecoration(
-            color:
-                _currentPage == page ? const Color(0xff363636) : Colors.white,
+     
+            color: _currentPage == page
+                ? const Color(0xff363636)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(30)),
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: _currentPage == page ? Colors.white : Colors.grey,
           ),
@@ -187,6 +191,7 @@ class _chatbot1State extends State<chatbot1> {
   Widget _buildPageContent(String text, Color color) {
     return Container(
       decoration: BoxDecoration(
+        
         borderRadius: BorderRadius.circular(30),
         color: Colors.white,
       ),

@@ -4,6 +4,7 @@ import 'package:seol/pages/mypage/2.dart';
 import 'package:seol/pages/mypage/3.dart';
 import 'package:seol/pages/mypage/4.dart';
 import 'package:seol/pages/mypage/myclothes/1.dart';
+import 'package:seol/pages/mypage/myorder/1.dart';
 import 'package:seol/pages/mypage/myqna/1.dart';
 import 'package:seol/pages/mypage/myreview/1.dart';
 import 'package:seol/pages/mypage/mysize/1.dart';
@@ -26,17 +27,17 @@ class MyPage1 extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(
                     top: 40, bottom: 20, left: 20, right: 20),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+                decoration: BoxDecoration(
                   boxShadow: [
-                    // 그림자 추가
                     BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10.0,
-                      spreadRadius: 0.0,
-                      offset: Offset(0.0, 0.0),
+                      color: Colors.grey.withOpacity(0.5), // 그림자 색상
+                      spreadRadius: 0, // 그림자의 범위
+                      blurRadius: 5, // 그림자의 흐림 정도
+                      offset:
+                          const Offset(0, -3), // x, y 축의 그림자 위치 조정 (여기서는 아래쪽으로)
                     ),
                   ],
+                  color: Colors.white,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,15 +69,15 @@ class MyPage1 extends StatelessWidget {
                 ),
               ),
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
-                    // 그림자 추가
                     BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10.0,
-                      spreadRadius: 0.0,
-                      offset: Offset(0.0, 0.0),
+                      color: Colors.grey.withOpacity(0.5), // 그림자 색상
+                      spreadRadius: 0, // 그림자의 범위
+                      blurRadius: 5, // 그림자의 흐림 정도
+                      offset:
+                          const Offset(0, 3), // x, y 축의 그림자 위치 조정 (여기서는 아래쪽으로)
                     ),
                   ],
                 ),
@@ -203,7 +204,7 @@ class MyPage1 extends StatelessWidget {
               ),
               Container(
                 width: width,
-                height: height * 0.36,
+                height: height * 0.34,
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Column(
                   children: [
@@ -240,21 +241,29 @@ class MyPage1 extends StatelessWidget {
                             scale: 2.2,
                           ),
                         ),
-                        Image.asset(
-                          'assets/images/97.png',
-                          scale: 2.2,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MyOder()));
+                          },
+                          child: Image.asset(
+                            'assets/images/97.png',
+                            scale: 2.2,
+                          ),
                         )
                       ],
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Image.asset(
                           'assets/images/98.png',
-                          scale: 2.2,
+                          scale: 1.1,
                         ),
                         InkWell(
                           onTap: () {
@@ -269,11 +278,11 @@ class MyPage1 extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: (){ Navigator.push(
+                          onTap: () {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const Myqna()));
-
                           },
                           child: Image.asset(
                             'assets/images/100.png',
@@ -292,7 +301,8 @@ class MyPage1 extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 20, right: 20),
               ),
               Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(
+                      bottom: 20, left: 20, right: 20, top: 10),
                   child: Image.asset('assets/images/101.png'))
             ],
           ),

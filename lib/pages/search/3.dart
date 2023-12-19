@@ -36,6 +36,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
   bool d = false;
   bool e = false;
   bool f = false;
+  bool g = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -48,7 +49,8 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
           centerTitle: true,
           title: const Text(
             '에스티엠씨',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
           ),
           leading: IconButton(
               onPressed: () {
@@ -100,9 +102,11 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                   controller: _tabController,
                                   labelColor: ColorList.brown, // 선택된 탭의 텍스트 색상
                                   unselectedLabelColor:
-                                      Colors.grey, // 선택되지 않은 탭의 텍스트 색상
+                                      Colors.black, // 선택되지 않은 탭의 텍스트 색상
                                   indicatorColor:
                                       ColorList.brown, // 선택된 탭 아래의 지시선 색상
+                                  indicatorSize: TabBarIndicatorSize
+                                      .tab, // 인디케이터가 탭의 전체 너비를 차지하도록 설정
                                   tabs: const [
                                     Tab(
                                       child: Text(
@@ -141,6 +145,19 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                     child: Column(
                                       children: [
                                         Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5), // 그림자 색상
+                                                spreadRadius: 0, // 그림자의 범위
+                                                blurRadius: 1, // 그림자의 흐림 정도
+                                                offset: const Offset(0,
+                                                    3), // x, y 축의 그림자 위치 조정 (여기서는 아래쪽으로)
+                                              ),
+                                            ],
+                                          ),
                                           padding: const EdgeInsets.only(
                                               left: 20, right: 20),
                                           child: Column(
@@ -150,18 +167,20 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  const Row(
-                                                    children: [
-                                                      Text(
-                                                        "사이즈 알림표",
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 14),
-                                                      ),
-                                                      Icon(Icons
-                                                          .keyboard_arrow_down_outlined)
-                                                    ],
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        g = !g;
+                                                      });
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Image.asset(
+                                                            'assets/images/153.png'),
+                                                        const Icon(Icons
+                                                            .keyboard_arrow_down_outlined)
+                                                      ],
+                                                    ),
                                                   ),
                                                   InkWell(
                                                     onTap: () {
@@ -184,17 +203,19 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                               const SizedBox(
                                                 height: 10,
                                               ),
-                                              InkWell(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      a = !a;
-                                                    });
-                                                  },
-                                                  child: a
-                                                      ? Image.asset(
-                                                          'assets/images/49.png')
-                                                      : Image.asset(
-                                                          'assets/images/48.png')),
+                                              g
+                                                  ? InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          a = !a;
+                                                        });
+                                                      },
+                                                      child: a
+                                                          ? Image.asset(
+                                                              'assets/images/49.png')
+                                                          : Image.asset(
+                                                              'assets/images/48.png'))
+                                                  : Container(),
                                               const SizedBox(
                                                 height: 10,
                                               ),
@@ -235,10 +256,10 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                               children: [
                                                                 Container(
                                                                   height: 50,
-                                                                  decoration: BoxDecoration(
-                                                                      border: Border.all(
-                                                                          color:
-                                                                              ColorList.grey)),
+                                                                  decoration: const BoxDecoration(
+                                                                      border: Border(
+                                                                          bottom:
+                                                                              BorderSide(color: Colors.grey))),
                                                                   padding:
                                                                       const EdgeInsets
                                                                           .only(
@@ -425,15 +446,11 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                 ],
                                               )
                                             : Container(),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              right: 20, left: 20),
+                                              right: 20, left: 20, top: 20),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                                color: Colors.white,
                                                 boxShadow: [
                                                   BoxShadow(
                                                     color: Colors.grey
@@ -443,6 +460,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                     offset: const Offset(0, 3),
                                                   ),
                                                 ],
+                                                color: Colors.white,
                                                 borderRadius:
                                                     const BorderRadius.all(
                                                         Radius.circular(10))),
@@ -455,7 +473,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                                     Column(
                                                       children: [
                                                         SizedBox(
-                                                          height: 500,
+                                                          height: 400,
                                                           child:
                                                               PageView.builder(
                                                             controller:
@@ -616,7 +634,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                         child: Row(
                           children: [
                             Container(
-                              width: width * 0.3,
+                              width: width * 0.33,
                               height: 40,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
@@ -630,10 +648,10 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                               ),
                             ),
                             const SizedBox(
-                              width: 30,
+                              width: 20,
                             ),
                             Container(
-                              width: width * 0.3,
+                              width: width * 0.33,
                               height: 40,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(

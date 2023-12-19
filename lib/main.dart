@@ -23,10 +23,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
+            splashColor: Colors.transparent, // 물결 효과 투명하게
+            highlightColor: Colors.transparent, // 하이라이트 효과 투명하게
             fontFamily: 'Pretendard',
             primarySwatch: Colors.blue,
           ),
-          home: const tutorial1()),
+          home: const Bottom(
+            showBottomSheet: false,
+          )),
     );
   }
 }

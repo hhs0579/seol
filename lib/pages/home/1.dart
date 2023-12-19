@@ -87,7 +87,7 @@ class home1 extends StatelessWidget {
                                                 style: TextStyle(
                                                     fontSize: 10,
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                        FontWeight.w500),
                                               ),
                                               const SizedBox(
                                                 height: 5,
@@ -95,15 +95,15 @@ class home1 extends StatelessWidget {
                                               Text(
                                                 '${model.nickname}님',
                                                 style: const TextStyle(
-                                                    fontSize: 16,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
                                               const Text(
                                                 '반가워요!',
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 16),
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 14),
                                               )
                                             ],
                                           ),
@@ -135,7 +135,7 @@ class home1 extends StatelessWidget {
                                 child: Container(
                                     margin: const EdgeInsets.only(right: 20),
                                     width: width,
-                                    height: height * 0.5,
+                                    height: height * 0.4,
                                     child: Image.asset(
                                       'assets/images/13.png',
                                     )),

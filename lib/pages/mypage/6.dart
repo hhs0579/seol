@@ -20,6 +20,7 @@ class _mypage6State extends State<mypage6> {
   }
 
   bool a = false;
+  bool c = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -82,10 +83,11 @@ class _mypage6State extends State<mypage6> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(color: ColorList.grey)),
-                  child: const TextField(
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  child: TextField(
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                     decoration: InputDecoration(
                       hintText: '도로명,지번,건물병을 입력해주세요',
+                      hintStyle: TextStyle(fontSize: 14, color: ColorList.grey),
                       border: InputBorder.none,
                     ),
                   ),
@@ -93,17 +95,24 @@ class _mypage6State extends State<mypage6> {
                 const SizedBox(
                   width: 10,
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(30)),
-                  child: const Text(
-                    '검색',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      c = !c;
+                    });
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 50,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: const Text(
+                      '검색',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],
@@ -122,16 +131,11 @@ class _mypage6State extends State<mypage6> {
             const SizedBox(
               height: 30,
             ),
-            SizedBox(
-              width: width,
-              height: 50,
-              child: Row(
-                children: [
-                  _buildTopButton("도로명주소", 0),
-                  _buildTopButton("지번주소", 1),
-                ],
-              ),
-            ),
+            Container(
+                color: Colors.white,
+                width: width,
+                height: 45,
+                child: _buildStackedTopButtons()),
             Expanded(
               // PageView for swiping pages
               child: PageView(
@@ -142,11 +146,44 @@ class _mypage6State extends State<mypage6> {
                     _currentPage = page;
                   });
                 },
-                children: const [road(), road()],
+                children: [
+                  road(
+                    b: c,
+                  ),
+                  road(b: c)
+                ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildStackedTopButtons() {
+    double width = MediaQuery.of(context).size.width;
+    double overlap = width * 0.12; // 버튼이 겹치는 정도를 조절하는 값
+
+    List<Widget> buttons = [
+      Positioned(
+        left: 0,
+        child: _buildTopButton("도로명주소", 0),
+      ),
+      Positioned(
+        left: width * 0.6 - overlap, // 첫 번째 버튼과 겹치게 위치 조정
+        child: _buildTopButton("지번주소", 1),
+      ),
+    ];
+
+    // 선택된 버튼을 마지막에 렌더링하여 앞으로 오도록 함
+    Widget selectedButton = buttons.removeAt(_currentPage);
+    buttons.add(selectedButton);
+
+    return SizedBox(
+      width: width,
+      height: 55,
+      child: Stack(
+        children: buttons,
       ),
     );
   }
@@ -160,13 +197,12 @@ class _mypage6State extends State<mypage6> {
         : const BorderRadius.only(topLeft: Radius.circular(80));
 
     // 각 버튼의 텍스트 정렬 설정
-    Alignment alignment =
-        (page == 0) ? Alignment.centerLeft : Alignment.centerRight;
+    Alignment alignment = (page == 0) ? Alignment.center : Alignment.center;
 
     // 텍스트에 여백을 주기 위한 EdgeInsets 설정
     EdgeInsets textPadding = (page == 0)
-        ? const EdgeInsets.only(left: 20.0)
-        : const EdgeInsets.only(right: 20.0);
+        ? const EdgeInsets.only(right: 20.0)
+        : const EdgeInsets.only(left: 20.0);
 
     return InkWell(
       splashColor: Colors.transparent,
@@ -180,20 +216,12 @@ class _mypage6State extends State<mypage6> {
       },
       child: Container(
         alignment: alignment,
-        width: width * 0.5,
+        width: width * 0.53,
         height: 55,
         decoration: BoxDecoration(
-          color: _currentPage == page ? Colors.white : const Color(0xffECECEC),
+          color:
+              _currentPage == page ? ColorList.white : const Color(0xffECECEC),
           borderRadius: borderRadius,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10.0,
-              spreadRadius: 0.0,
-              offset:
-                  Offset(0.0, 4.0), // Offset to create shadow below the button
-            ),
-          ],
         ),
         child: Padding(
           padding: textPadding,
@@ -202,7 +230,7 @@ class _mypage6State extends State<mypage6> {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: _currentPage == page ? Colors.black : Colors.grey,
+              color: _currentPage == page ? Colors.black : Colors.black,
             ),
           ),
         ),

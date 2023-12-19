@@ -33,11 +33,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-        child: Container(
-      padding: const EdgeInsets.all(30),
-      color: Colors.white,
-      child: Image.asset('assets/images/45.png'),
-    ));
+    return ClipRect(
+      child: Drawer(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(0),
+                  bottomRight: Radius.circular(0))),
+          child: Container(
+            padding: const EdgeInsets.all(30),
+            color: Colors.white,
+            child: Image.asset('assets/images/45.png'),
+          )),
+    );
   }
 }

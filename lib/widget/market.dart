@@ -11,6 +11,7 @@ class Market extends StatefulWidget {
 }
 
 class _MarketState extends State<Market> {
+  
   var valueSel;
   List ListItem = [
     '최신순',
@@ -125,7 +126,11 @@ class _MarketState extends State<Market> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('인기 쇼핑몰 순위'),
+                    const Text(
+                      '인기 쇼핑몰 순위',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                    ),
                     Container(
                       padding: const EdgeInsets.only(
                         left: 10,
@@ -136,7 +141,7 @@ class _MarketState extends State<Market> {
                       child: DropdownButton(
                         underline: const SizedBox(),
                         hint: const Text(
-                          '최신순',
+                          '추천순',
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.bold),
                         ),

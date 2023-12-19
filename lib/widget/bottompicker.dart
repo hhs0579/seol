@@ -42,7 +42,7 @@ void showPickerModal(BuildContext context) {
                     child: Center(
                       child: Image.asset(
                           'assets/images/${25 + currentPage}.png',
-                          scale: 2),
+                          scale: 1),
                     ),
                   ),
                   IconButton(
@@ -62,11 +62,8 @@ void showPickerModal(BuildContext context) {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
               SizedBox(
-                height: 200,
+                height: 270,
                 child: PageView(
                   controller: controller,
                   onPageChanged: (int page) {
@@ -154,73 +151,84 @@ void showPickerModal2(BuildContext context) {
           height: MediaQuery.of(context).size.height * 0.8,
           child: Column(
             children: [
-              const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    onPressed: () {
-                      if (currentPage > 0) {
-                        controller.animateToPage(
-                          currentPage - 1,
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.easeIn,
-                        );
-                        setState(() {
-                          currentPage--;
-                        });
-                      }
-                    },
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Image.asset(
-                          'assets/images/${25 + currentPage}.png',
-                          scale: 2),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.arrow_forward_ios),
-                    onPressed: () {
-                      if (currentPage < 3) {
-                        controller.animateToPage(
-                          currentPage + 1,
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.easeIn,
-                        );
-                        setState(() {
-                          currentPage++;
-                        });
-                      }
-                    },
-                  ),
-                ],
-              ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
-              SizedBox(
-                height: 400,
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: PageView(
-                  controller: controller,
-                  onPageChanged: (int page) {
-                    setState(() {
-                      currentPage = page;
-                    });
-                  },
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/138.png',
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios),
+                      onPressed: () {
+                        if (currentPage > 0) {
+                          controller.animateToPage(
+                            currentPage - 1,
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.easeIn,
+                          );
+                          setState(() {
+                            currentPage--;
+                          });
+                        }
+                      },
                     ),
-                    Image.asset('assets/images/138.png'),
-                    Image.asset('assets/images/138.png'),
-                    Image.asset('assets/images/138.png'),
+                    Expanded(
+                      child: Center(
+                        child: Image.asset(
+                            'assets/images/${25 + currentPage}.png',
+                            scale: 1),
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.arrow_forward_ios),
+                      onPressed: () {
+                        if (currentPage < 3) {
+                          controller.animateToPage(
+                            currentPage + 1,
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.easeIn,
+                          );
+                          setState(() {
+                            currentPage++;
+                          });
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
-              const Spacer(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      SizedBox(
+                        height: 500,
+                        width: MediaQuery.of(context).size.width,
+                        child: PageView(
+                          controller: controller,
+                          onPageChanged: (int page) {
+                            setState(() {
+                              currentPage = page;
+                            });
+                          },
+                          children: [
+                            Image.asset(
+                              'assets/images/138.png',
+                            ),
+                            Image.asset('assets/images/138.png'),
+                            Image.asset('assets/images/138.png'),
+                            Image.asset('assets/images/138.png'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -262,7 +270,7 @@ void showPickerModal2(BuildContext context) {
 
 Widget buildPickersPage(List<List<String>> items) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(10),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(items.length * 2 - 1, (index) {
@@ -318,10 +326,10 @@ Widget buildColorPicker() {
         children: colors
             .map((color) => Center(
                   child: Container(
-                    width: 50,
+                    width: 60,
                     margin: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: Colors.black),
                       color: color,
                     ),
@@ -351,8 +359,8 @@ Widget buildPicker(List<String> items) {
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: CupertinoPicker(
-        itemExtent: 32.0,
-        diameterRatio: 1.0, // 피커의 직경 비율을 조정하여 더 넓게 만듭니다.
+        itemExtent: 27.0,
+        diameterRatio: 1, // 피커의 직경 비율을 조정하여 더 넓게 만듭니다.
         onSelectedItemChanged: (int index) {
           // 선택된 항목에 대한 처리
         },
@@ -361,7 +369,7 @@ Widget buildPicker(List<String> items) {
                     child: Text(
                   item,
                   style: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.bold),
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 )))
             .toList(),
       ),

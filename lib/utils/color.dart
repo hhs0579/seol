@@ -10,4 +10,5 @@ class ColorList {
   static Color brown = const Color(0xff854F36);
   static Color lightbrown = const Color(0xffeeebe3);
   static Color black = const Color(0xff363636);
+  static Color orange = const Color(0xffFF881B);
 }

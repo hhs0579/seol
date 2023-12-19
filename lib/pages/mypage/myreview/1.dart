@@ -163,9 +163,14 @@ class _myReviewState extends State<myReview> {
                                                           FontWeight.w400,
                                                       fontSize: 20),
                                                 ),
-                                                const Icon(Icons.close,
-                                                    color: Colors.black,
-                                                    size: 25)
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: const Icon(Icons.close,
+                                                      color: Colors.black,
+                                                      size: 25),
+                                                )
                                               ],
                                             ),
                                           ),

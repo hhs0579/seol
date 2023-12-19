@@ -50,16 +50,7 @@ class _search1State extends State<search1> {
           const SizedBox(
             height: 30,
           ),
-          SizedBox(
-            width: width,
-            height: 50,
-            child: Row(
-              children: [
-                _buildTopButton("상품", 0),
-                _buildTopButton("가게", 1),
-              ],
-            ),
-          ),
+          SizedBox(width: width, height: 45, child: _buildStackedTopButtons()),
           Expanded(
             // PageView for swiping pages
             child: PageView(
@@ -74,6 +65,34 @@ class _search1State extends State<search1> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildStackedTopButtons() {
+    double width = MediaQuery.of(context).size.width;
+    double overlap = width * 0.12; // 버튼이 겹치는 정도를 조절하는 값
+
+    List<Widget> buttons = [
+      Positioned(
+        left: 0,
+        child: _buildTopButton("상품", 0),
+      ),
+      Positioned(
+        left: width * 0.6 - overlap, // 첫 번째 버튼과 겹치게 위치 조정
+        child: _buildTopButton("가게", 1),
+      ),
+    ];
+
+    // 선택된 버튼을 마지막에 렌더링하여 앞으로 오도록 함
+    Widget selectedButton = buttons.removeAt(_currentPage);
+    buttons.add(selectedButton);
+
+    return SizedBox(
+      width: width,
+      height: 55,
+      child: Stack(
+        children: buttons,
       ),
     );
   }
@@ -107,7 +126,7 @@ class _search1State extends State<search1> {
       },
       child: Container(
         alignment: alignment,
-        width: width * 0.5,
+        width: width * 0.53,
         height: 55,
         decoration: BoxDecoration(
           color:

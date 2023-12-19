@@ -74,8 +74,13 @@ class _ReviewBottomState extends State<ReviewBottom> {
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18),
                             ),
-                            const Icon(Icons.close,
-                                color: Colors.black, size: 25)
+                            InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: const Icon(Icons.close,
+                                  color: Colors.black, size: 25),
+                            )
                           ],
                         ),
                         const SizedBox(

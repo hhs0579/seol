@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:seol/utils/color.dart';
 
-class mypage5 extends StatelessWidget {
+class mypage5 extends StatefulWidget {
   const mypage5({super.key});
+
+  @override
+  State<mypage5> createState() => _mypage5State();
+}
+
+class _mypage5State extends State<mypage5> {
+  TextEditingController nicknameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nicknameController.addListener(_updateButtonState);
+  }
+
+  void _updateButtonState() {
+    setState(() {
+      // 이 함수는 텍스트 필드의 값이 변경될 때마다 호출됩니다.
+    });
+  }
+
+  @override
+  void dispose() {
+    nicknameController.removeListener(_updateButtonState);
+    nicknameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +108,13 @@ class mypage5 extends StatelessWidget {
                           children: [
                             SizedBox(
                                 width: width * 0.6,
-                                child: const TextField(
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                  decoration: InputDecoration(
+                                child: TextField(
+                                  controller: nicknameController,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                  decoration: const InputDecoration(
                                     hintText: '낙지곱창새우',
+                                    hintStyle: TextStyle(color: Colors.black),
                                     border: InputBorder.none,
                                   ),
                                 )),
@@ -124,20 +153,25 @@ class mypage5 extends StatelessWidget {
             ),
             const Spacer(),
             InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: nicknameController.text.isNotEmpty
+                  ? () {
+                      Navigator.pop(context);
+                    }
+                  : null,
               child: Container(
                 alignment: Alignment.center,
                 width: width,
                 height: 80,
-                color: ColorList.black,
+                color: nicknameController.text.isNotEmpty
+                    ? ColorList.black
+                    : Colors.grey, // 텍스트가 있으면 검은색, 없으면 회색
                 child: const Text(
                   '작성완료',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 18),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
                 ),
               ),
             )
