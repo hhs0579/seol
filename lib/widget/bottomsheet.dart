@@ -776,6 +776,16 @@ void orderchange(BuildContext context) {
       // SetState를 호출하여 UI를 새로고침
     }
   });
+  TextEditingController controller2 = TextEditingController();
+  int currentLength2 = 0;
+
+  const int maxLength2 = 150;
+  controller2.addListener(() {
+    if (currentLength2 != controller2.text.length) {
+      currentLength2 = controller2.text.length;
+      // SetState를 호출하여 UI를 새로고침
+    }
+  });
   showModalBottomSheet(
     backgroundColor: Colors.white,
     isScrollControlled: true,
@@ -789,6 +799,8 @@ void orderchange(BuildContext context) {
         void updateReason(String reason) {
           setState(() {
             selectedReason = reason;
+            selectedReason2 =
+                ''; // selectedReason2를 업데이트할 때 selectedReason을 초기화
             a = false;
           });
         }
@@ -796,6 +808,7 @@ void orderchange(BuildContext context) {
         void updateReason2(String reason) {
           setState(() {
             selectedReason2 = reason;
+            selectedReason = ''; // selectedReason2를 업데이트할 때 selectedReason을 초기화
             a = false;
           });
         }
@@ -870,6 +883,7 @@ void orderchange(BuildContext context) {
                                       setState(() {
                                         re = !re;
                                         ex = !ex;
+                                        selectedReason2 = '';
                                       });
                                     },
                                     child: Container(
@@ -896,6 +910,7 @@ void orderchange(BuildContext context) {
                                       setState(() {
                                         re = !re;
                                         ex = !ex;
+                                        selectedReason = '';
                                       });
                                     },
                                     child: Container(
@@ -928,7 +943,7 @@ void orderchange(BuildContext context) {
                                     child: !a
                                         ? Container(
                                             alignment: Alignment.center,
-                                            height: height * 0.08,
+                                            height: height * 0.06,
                                             width: width * 0.85,
                                             decoration: BoxDecoration(
                                                 color: selectedReason.isEmpty
@@ -955,7 +970,7 @@ void orderchange(BuildContext context) {
                                           )
                                         : Container(
                                             alignment: Alignment.center,
-                                            height: height * 0.3825,
+                                            height: height * 0.3625,
                                             width: width * 0.85,
                                             decoration: BoxDecoration(
                                                 border: Border.all(
@@ -968,7 +983,7 @@ void orderchange(BuildContext context) {
                                                 Container(
                                                   alignment: Alignment.center,
                                                   width: width * 0.85,
-                                                  height: height * 0.08,
+                                                  height: height * 0.06,
                                                   decoration: BoxDecoration(
                                                     border: Border(
                                                         bottom: BorderSide(
@@ -1236,7 +1251,7 @@ void orderchange(BuildContext context) {
                                     child: !a
                                         ? Container(
                                             alignment: Alignment.center,
-                                            height: height * 0.08,
+                                            height: height * 0.06,
                                             width: width * 0.85,
                                             decoration: BoxDecoration(
                                                 color: selectedReason2.isEmpty
@@ -1263,7 +1278,7 @@ void orderchange(BuildContext context) {
                                           )
                                         : Container(
                                             alignment: Alignment.center,
-                                            height: height * 0.3825,
+                                            height: height * 0.3625,
                                             width: width * 0.85,
                                             decoration: BoxDecoration(
                                                 border: Border.all(
@@ -1276,7 +1291,7 @@ void orderchange(BuildContext context) {
                                                 Container(
                                                   alignment: Alignment.center,
                                                   width: width * 0.85,
-                                                  height: height * 0.08,
+                                                  height: height * 0.06,
                                                   decoration: BoxDecoration(
                                                     border: Border(
                                                         bottom: BorderSide(
@@ -1538,76 +1553,126 @@ void orderchange(BuildContext context) {
                                             )),
                                   ),
                             const SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
-                            selectedReason.isEmpty
-                                ? Container()
-                                : Container(
-                                    width: width * 0.85,
-                                    height: height * 0.28,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
-                                          color: ColorList.grey, width: 1),
+                            if (selectedReason.isNotEmpty &&
+                                selectedReason2.isEmpty)
+                              Container(
+                                width: width * 0.85,
+                                height: height * 0.28,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                      color: ColorList.grey, width: 1),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: const Text(
+                                        '교환 사유',
+                                        style: TextStyle(fontSize: 14),
+                                      ),
                                     ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          padding:
-                                              const EdgeInsets.only(top: 10),
-                                          child: const Text(
-                                            '교환 사유',
-                                            style: TextStyle(fontSize: 14),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      height: height * 0.18,
+                                      width: width * 0.75,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: ColorList.grey,
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          padding:
-                                              const EdgeInsets.only(left: 5),
-                                          height: height * 0.18,
-                                          width: width * 0.75,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: ColorList.grey,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: ColorList.lightgrey),
-                                          child: TextField(
-                                            controller: controller,
-                                            maxLength: 150, // 카운터 텍스트를 숨깁니다
-                                            maxLines: 5,
-                                            decoration: InputDecoration(
-                                                counterText: '',
-                                                border: InputBorder.none,
-                                                hintText:
-                                                    '[필수] 상세한 사유를 사장님에게 알려주세요\n* 가게 정책에 따라 단순변심의 경우,배송비가 부과될 수 있습니다.',
-                                                hintStyle: TextStyle(
-                                                    fontSize: 12,
-                                                    color: ColorList.grey)),
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: const EdgeInsets.only(
-                                              right: 20, top: 10),
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            '$currentLength/$maxLength',
-                                            style: TextStyle(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: ColorList.lightgrey),
+                                      child: TextField(
+                                        controller: controller,
+                                        maxLength: 150, // 카운터 텍스트를 숨깁니다
+                                        maxLines: 5,
+                                        decoration: InputDecoration(
+                                            counterText: '',
+                                            border: InputBorder.none,
+                                            hintText:
+                                                '[필수] 상세한 사유를 사장님에게 알려주세요\n* 가게 정책에 따라 단순변심의 경우,배송비가 부과될 수 있습니다.',
+                                            hintStyle: TextStyle(
                                                 fontSize: 12,
-                                                color: ColorList.grey),
-                                          ),
-                                        )
-                                      ],
+                                                color: ColorList.grey)),
+                                      ),
                                     ),
-                                  ),
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          right: 20, top: 10),
+                                      alignment: Alignment.centerRight,
+                                      child: Text(
+                                        '$currentLength/$maxLength',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: ColorList.grey),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            if (selectedReason.isEmpty &&
+                                selectedReason2.isNotEmpty)
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      height: height * 0.18,
+                                      width: width * 0.85,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: ColorList.grey,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: ColorList.lightgrey),
+                                      child: TextField(
+                                        controller: controller2,
+                                        maxLength: 150, // 카운터 텍스트를 숨깁니다
+                                        maxLines: 5,
+                                        decoration: InputDecoration(
+                                            counterText: '',
+                                            border: InputBorder.none,
+                                            hintText:
+                                                '[필수] 상세한 사유를 사장님에게 알려주세요\n* 가게 정책에 따라 단순변심의 경우,배송비가 부과될 수 있습니다.',
+                                            hintStyle: TextStyle(
+                                                fontSize: 12,
+                                                color: ColorList.grey)),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          right: 35, top: 10),
+                                      alignment: Alignment.centerRight,
+                                      child: Text(
+                                        '$currentLength2/$maxLength2',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: ColorList.grey),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.only(
+                                          left: 28, top: 10, bottom: 10),
+                                      child:
+                                          Image.asset('assets/images/163.png'),
+                                    )
+                                  ],
+                                ),
+                              )
                           ],
                         )),
                   ),
                 ),
-                (selectedReason.isNotEmpty && controller.text.isNotEmpty)
+                ((selectedReason2.isNotEmpty && controller2.text.isNotEmpty) ||
+                        (selectedReason.isNotEmpty &&
+                            controller.text.isNotEmpty))
                     ? InkWell(
                         onTap: () {
                           Navigator.pop(context);

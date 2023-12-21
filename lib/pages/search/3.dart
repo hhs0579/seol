@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seol/utils/color.dart';
 import 'package:seol/widget/%08bottomsheet.dart';
+import 'package:seol/widget/%08dialog.dart';
 
 class Search3 extends StatefulWidget {
   const Search3({super.key});
@@ -30,6 +31,19 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  List ListItem = [
+    '별점낮은순',
+    '별점높은순',
+    '조회순',
+    '추천순',
+  ];
+  var valueSel;
+  List ListItem2 = [
+    '상품문의',
+    '배송문의',
+    '교환/반품 문의',
+  ];
+  var valueSel2;
   bool a = false;
   bool b = false;
   bool c = false;
@@ -37,6 +51,8 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
   bool e = false;
   bool f = false;
   bool g = false;
+  bool h = false;
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -117,7 +133,7 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                     ),
                                     Tab(
                                       child: Text(
-                                        '리뷰(0)',
+                                        '리뷰(3)',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -132,9 +148,6 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                   ],
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 10,
                             ),
                             SizedBox(
                               height: height * 2.5,
@@ -561,10 +574,383 @@ class _Search3State extends State<Search3> with SingleTickerProviderStateMixin {
                                       ],
                                     ),
                                   ), // 첫 번째 탭 내용
-                                  const Icon(
-                                      Icons.directions_transit), // 두 번째 탭 내용
-                                  const Icon(
-                                      Icons.directions_bike), // 세 번째 탭 내용
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 25),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  '평균 평점',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: ColorList.brown),
+                                                ),
+                                                DropdownButton(
+                                                  isExpanded: false,
+                                                  itemHeight: null,
+                                                  underline: const SizedBox(),
+                                                  hint: const Text(
+                                                    '정렬순',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  elevation: 1,
+                                                  value: valueSel,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      valueSel = value;
+                                                    });
+                                                  },
+                                                  items:
+                                                      ListItem.map((valueItem) {
+                                                    return DropdownMenuItem(
+                                                      value: valueItem,
+                                                      child: Container(
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                              valueItem,
+                                                              style: const TextStyle(
+                                                                  fontSize: 10,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+                                                  // 드롭다운 메뉴의 모서리에 라운드 모양 추가
+                                                  dropdownColor: Colors
+                                                      .white, // 메뉴의 배경색 설정
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8), // 모서리 라운드 설정
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                h
+                                                    ? Image.asset(
+                                                        'assets/images/169.png',
+                                                        scale: 2,
+                                                      )
+                                                    : Image.asset(
+                                                        'assets/images/167.png',
+                                                        scale: 2,
+                                                      ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      h = !h;
+                                                    });
+                                                  },
+                                                  child: h
+                                                      ? Image.asset(
+                                                          'assets/images/170.png',
+                                                          scale: 2,
+                                                        )
+                                                      : Image.asset(
+                                                          'assets/images/168.png',
+                                                          scale: 2,
+                                                        ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 15),
+                                            color: ColorList.grey,
+                                            height: 1,
+                                            width: width,
+                                          ),
+                                          h
+                                              ? InkWell(
+                                                  onTap: () {
+                                                    reviewAlert(context);
+                                                  },
+                                                  child: Column(
+                                                    children: [
+                                                      Image.asset(
+                                                          'assets/images/174.png'),
+                                                      const SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                      InkWell(
+                                                          onTap: () {},
+                                                          child: Image.asset(
+                                                              'assets/images/172.png')),
+                                                      const SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                      InkWell(
+                                                          onTap: () {
+                                                            reviewAlert(
+                                                                context);
+                                                          },
+                                                          child: Image.asset(
+                                                              'assets/images/172.png')),
+                                                      const SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                      InkWell(
+                                                          onTap: () {},
+                                                          child: Image.asset(
+                                                              'assets/images/172.png')),
+                                                      const SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                      InkWell(
+                                                          onTap: () {
+                                                            reviewAlert(
+                                                                context);
+                                                          },
+                                                          child: Image.asset(
+                                                              'assets/images/172.png')),
+                                                    ],
+                                                  ),
+                                                )
+                                              : Column(
+                                                  children: [
+                                                    Image.asset(
+                                                        'assets/images/171.png'),
+                                                    const SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    InkWell(
+                                                        onTap: () {
+                                                          reviewAlert(context);
+                                                        },
+                                                        child: Image.asset(
+                                                            'assets/images/172.png')),
+                                                    const SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    Image.asset(
+                                                        'assets/images/171.png'),
+                                                    const SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    Image.asset(
+                                                        'assets/images/171.png'),
+                                                    const SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    Image.asset(
+                                                        'assets/images/171.png'),
+                                                  ],
+                                                ),
+                                        ],
+                                      ),
+                                    ),
+                                  ), // 두 번째 탭 내용
+                                  SingleChildScrollView(
+                                    child: Container(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.only(
+                                                right: 25, top: 25),
+                                            height: height * 0.42,
+                                            width: width,
+                                            color: const Color(0xffF4F4F4),
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      left: 25),
+                                                  child: const Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      '상품에 대해 궁금한 것을 질문하세요!',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 16),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            left: 25),
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 5),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        border: Border.all(
+                                                            color: ColorList
+                                                                .grey)),
+                                                    child: DropdownButton(
+                                                      isExpanded: false,
+                                                      itemHeight: null,
+                                                      underline:
+                                                          const SizedBox(),
+                                                      hint: const Text(
+                                                        '문의 항목',
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      elevation: 1,
+                                                      value: valueSel2,
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          valueSel2 = value;
+                                                        });
+                                                      },
+                                                      items: ListItem2.map(
+                                                          (valueItem) {
+                                                        return DropdownMenuItem(
+                                                          value: valueItem,
+                                                          child: Container(
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  valueItem,
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }).toList(),
+                                                      // 드롭다운 메뉴의 모서리에 라운드 모양 추가
+                                                      dropdownColor: Colors
+                                                          .white, // 메뉴의 배경색 설정
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8), // 모서리 라운드 설정
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      left: 25),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
+                                                  width: width,
+                                                  height: height * 0.2,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: ColorList.grey),
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  child: TextField(
+                                                      decoration:
+                                                          InputDecoration(
+                                                    hintText: '내용을 입력하세요',
+                                                    hintStyle: TextStyle(
+                                                        color: ColorList.grey,
+                                                        fontSize: 14),
+                                                    border: InputBorder.none,
+                                                  )),
+                                                ),
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      left: 12, top: 6),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Checkbox(
+                                                            value: isChecked,
+                                                            checkColor: Colors
+                                                                .white, // 체크 표시 색상
+                                                            activeColor: Colors
+                                                                .black, // 체크박스 배경 색상
+                                                            onChanged:
+                                                                (bool? value) {
+                                                              setState(() {
+                                                                isChecked =
+                                                                    value!;
+                                                              });
+                                                            },
+                                                          ),
+                                                          Text(
+                                                            '비공개',
+                                                            style: TextStyle(
+                                                                color: ColorList
+                                                                    .grey),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        width: 80,
+                                                        child: Image.asset(
+                                                            'assets/images/175.png'),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20, right: 20),
+                                              child: Image.asset(
+                                                  'assets/images/176.png'))
+                                        ],
+                                      ),
+                                    ),
+                                  ) // 세 번째 탭 내용
                                 ],
                               ),
                             ),

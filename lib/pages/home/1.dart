@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seol/bookmark/1.dart';
 import 'package:seol/bottom.dart';
 import 'package:seol/pages/home/2.dart';
+import 'package:seol/pages/home/3.dart';
 import 'package:seol/utils/color.dart';
 import 'package:seol/widget/userProvider.dart';
 
@@ -33,8 +35,19 @@ class home1 extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      const Icon(
-                                          Icons.bookmark_border_outlined),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Bookmark() // 여기에 새로운 페이지 위젯을 넣으세요.
+                                                ),
+                                          );
+                                        },
+                                        child: const Icon(
+                                            Icons.bookmark_border_outlined),
+                                      ),
                                       const SizedBox(
                                         width: 5,
                                       ),
@@ -53,7 +66,18 @@ class home1 extends StatelessWidget {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      const Icon(Icons.shopping_bag_outlined)
+                                      InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Shopping(), // 여기에 새로운 페이지 위젯을 넣으세요.
+                                              ),
+                                            );
+                                          },
+                                          child: const Icon(
+                                              Icons.shopping_bag_outlined))
                                     ],
                                   )),
                               Container(
