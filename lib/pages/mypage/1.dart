@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:seol/pages/help/1.dart';
 import 'package:seol/pages/mypage/2.dart';
 import 'package:seol/pages/mypage/3.dart';
 import 'package:seol/pages/mypage/4.dart';
@@ -261,9 +262,17 @@ class MyPage1 extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset(
-                          'assets/images/98.png',
-                          scale: 1.1,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const help()));
+                          },
+                          child: Image.asset(
+                            'assets/images/98.png',
+                            scale: 1.1,
+                          ),
                         ),
                         InkWell(
                           onTap: () {

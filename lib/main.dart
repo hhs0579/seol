@@ -28,9 +28,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Pretendard',
             primarySwatch: Colors.blue,
           ),
-          home: const Bottom(
-            showBottomSheet: false,
-          )),
+          home: const tutorial1()),
     );
   }
 }

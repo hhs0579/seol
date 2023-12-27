@@ -543,6 +543,8 @@ class _payPageState extends State<payPage> {
                                   height: 5,
                                 ),
                                 Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     InkWell(
                                       onTap: () {
@@ -555,7 +557,7 @@ class _payPageState extends State<payPage> {
                                       },
                                       child: Container(
                                         alignment: Alignment.center,
-                                        width: width * 0.25,
+                                        width: width * 0.265,
                                         height: 50,
                                         decoration: BoxDecoration(
                                             border: g
@@ -582,7 +584,7 @@ class _payPageState extends State<payPage> {
                                       },
                                       child: Container(
                                         alignment: Alignment.center,
-                                        width: width * 0.25,
+                                        width: width * 0.265,
                                         height: 50,
                                         decoration: BoxDecoration(
                                             border: h
@@ -591,7 +593,7 @@ class _payPageState extends State<payPage> {
                                                     color: ColorList.grey),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        child: const Text('가상계좌',
+                                        child: const Text('신용/체크카드',
                                             style: TextStyle(
                                                 fontSize: 13,
                                                 color: Colors.black,
@@ -609,7 +611,7 @@ class _payPageState extends State<payPage> {
                                       },
                                       child: Container(
                                         alignment: Alignment.center,
-                                        width: width * 0.25,
+                                        width: width * 0.265,
                                         height: 50,
                                         decoration: BoxDecoration(
                                             border: g
@@ -618,7 +620,7 @@ class _payPageState extends State<payPage> {
                                                     color: ColorList.grey),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        child: const Text('가상계좌',
+                                        child: const Text('휴대폰',
                                             style: TextStyle(
                                                 fontSize: 13,
                                                 color: Colors.black,
@@ -626,7 +628,7 @@ class _payPageState extends State<payPage> {
                                       ),
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           )
@@ -637,6 +639,90 @@ class _payPageState extends State<payPage> {
                 ),
               ),
             ),
+            Column(
+              children: [
+                Container(
+                    width: width,
+                    height: height * 0.1,
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(0, -1),
+                              blurRadius: 1)
+                        ],
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        )),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(top: 12),
+                          width: width * 0.5,
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('상품금액', style: TextStyle(fontSize: 12)),
+                                  Text('배송비', style: TextStyle(fontSize: 12)),
+                                  Text('쿠폰/할인혜택',
+                                      style: TextStyle(fontSize: 12))
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text('23,000원',
+                                      style: TextStyle(fontSize: 12)),
+                                  Text('3,000원',
+                                      style: TextStyle(fontSize: 12)),
+                                  Text('6405원', style: TextStyle(fontSize: 12))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          color: ColorList.grey,
+                          width: 1,
+                          height: height * 0.07,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 18, right: 30),
+                          width: width * 0.49,
+                          child: const Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text('총 합계',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold)),
+                                Text('19,595원',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold))
+                              ]),
+                        )
+                      ],
+                    )),
+                Container(
+                    color: ColorList.black,
+                    alignment: Alignment.center,
+                    width: width,
+                    height: height * 0.1,
+                    child: const Text(
+                      '구매하기',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    )),
+              ],
+            )
           ],
         ),
       ),
